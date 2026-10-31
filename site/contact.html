@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — MightyFix</title>
+  <meta name="description" content="Placeholder — talk to a MightyFix technical expert or find your nearest office.">
+  <link rel="icon" href="assets/img/symbol-navy.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-nav="contact" data-no-cta>
+<main id="main" tabindex="-1">
+
+  <section class="page-hero page-hero--compact" aria-labelledby="ph-title">
+    <div class="container page-hero__grid">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><span aria-current="page">Contact</span></li></ol></nav>
+        <h1 id="ph-title" style="max-width:none">Talk to an expert.</h1>
+        <p class="lead">Placeholder — tell us about the job and a member of our technical team will get back to you within 24 hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div>
+        <div class="contact-card" data-reveal>
+          <h2 class="h4" style="color:var(--navy)">Technical & sales</h2>
+          <ul>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+00000000000">+00 000 000 000</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:sales@mightyfix.com">sales@mightyfix.com</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg><span>Placeholder — Sun–Thu, 8:00–17:00</span></li>
+          </ul>
+        </div>
+        <div id="office-cards"></div>
+        <div class="contact-card" data-reveal>
+          <h2 class="h4" style="color:var(--navy)">Follow us</h2>
+          <div class="footer__social" style="margin-top:var(--s3)">
+            <a href="#" aria-label="MightyFix on LinkedIn" style="color:var(--navy);border-color:var(--line)"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+            <a href="#" aria-label="MightyFix on Instagram" style="color:var(--navy);border-color:var(--line)"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
+            <a href="#" aria-label="MightyFix on Facebook" style="color:var(--navy);border-color:var(--line)"><svg class="icon" aria-hidden="true"><use href="#i-facebook"/></svg></a>
+            <a href="#" aria-label="MightyFix on YouTube" style="color:var(--navy);border-color:var(--line)"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div data-reveal style="--d:120ms">
+        <h2 class="h3" style="color:var(--navy)">Tell us about the job</h2>
+        <p class="muted mt-4 small">Fields marked <span style="color:var(--error)">*</span> are required.</p>
+        <div class="mt-6">
+          <form class="form" novalidate data-form>
+            <div class="form-summary" role="alert" tabindex="-1"><strong>Please fix the following:</strong><ul></ul></div>
+            <div class="form__row form__row--2">
+              <div class="field"><label for="c-first">First name <span class="req" aria-hidden="true">*</span></label><input class="input" id="c-first" type="text" autocomplete="given-name" required aria-describedby="c-first-err"><p class="field__error" id="c-first-err"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p></div>
+              <div class="field"><label for="c-last">Last name <span class="req" aria-hidden="true">*</span></label><input class="input" id="c-last" type="text" autocomplete="family-name" required aria-describedby="c-last-err"><p class="field__error" id="c-last-err"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p></div>
+            </div>
+            <div class="form__row form__row--2">
+              <div class="field"><label for="c-email">Email <span class="req" aria-hidden="true">*</span></label><input class="input" id="c-email" type="email" autocomplete="email" required aria-describedby="c-email-err"><p class="field__error" id="c-email-err"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p></div>
+              <div class="field"><label for="c-phone">Phone <span class="opt">(optional)</span></label><input class="input" id="c-phone" type="tel" autocomplete="tel" aria-describedby="c-phone-err"><p class="field__error" id="c-phone-err"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p></div>
+            </div>
+            <div class="form__row form__row--2">
+              <div class="field"><label for="c-company">Company <span class="opt">(optional)</span></label><input class="input" id="c-company" type="text" autocomplete="organization"></div>
+              <div class="field"><label for="c-topic">I'm asking about</label>
+                <select class="select input" id="c-topic">
+                  <option>Choosing a product</option><option>Technical support</option><option>Becoming a stockist</option><option>Orders & delivery</option><option>Something else</option>
+                </select></div>
+            </div>
+            <fieldset class="field"><legend>I work in</legend><div class="choice-row">
+              <label class="choice"><input type="radio" name="c-sector" value="construction" checked><span>Construction</span></label>
+              <label class="choice"><input type="radio" name="c-sector" value="manufacturing"><span>Manufacturing</span></label>
+              <label class="choice"><input type="radio" name="c-sector" value="diy"><span>Home & DIY</span></label>
+              <label class="choice"><input type="radio" name="c-sector" value="retail"><span>Retail / distribution</span></label>
+            </div></fieldset>
+            <div class="field"><label for="c-msg">How can we help? <span class="req" aria-hidden="true">*</span></label><textarea class="textarea" id="c-msg" required aria-describedby="c-msg-hint c-msg-err"></textarea>
+              <p class="field__hint" id="c-msg-hint">Tell us the surface, conditions and size of the job if you can.</p>
+              <p class="field__error" id="c-msg-err"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg><span></span></p></div>
+            <div><button type="submit" class="btn"><span class="btn__tile"><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>Send message</button></div>
+          </form>
+          <div class="form-success" tabindex="-1">
+            <div class="form-success__icon"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></div>
+            <h3 class="h3">Thanks — we'll be in touch.</h3>
+            <p class="mt-4 muted">Placeholder — a member of our technical team will reply within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-label="Map">
+    <div class="container">
+      <div class="map-ph" data-reveal>
+        <svg class="grid-lines" aria-hidden="true"><defs><pattern id="g" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M48 0H0V48" fill="none" stroke="currentColor"/></pattern></defs><rect width="100%" height="100%" fill="url(#g)"/></svg>
+        <span class="pin" style="left:38%;top:48%"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <span class="pin" style="left:62%;top:36%;background:var(--autumn)"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <span class="pin" style="left:71%;top:70%;background:var(--autumn)"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+        <span class="map-label">Map placeholder — embed Google Maps here</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="assets/js/data.js"></script>
+<script>
+  window.renderPage = function () {
+    document.getElementById("office-cards").innerHTML = OFFICES.map((o) => `
+      <div class="contact-card" data-reveal>
+        <h2 class="h4" style="color:var(--navy)">${MF.esc(o.name)} — ${MF.esc(o.city)}</h2>
+        <ul>
+          <li>${MF.ic("pin")}<span>${MF.esc(o.address)}</span></li>
+          <li>${MF.ic("phone")}<a href="tel:${o.phone.replace(/\s/g, "")}">${MF.esc(o.phone)}</a></li>
+          <li>${MF.ic("mail")}<a href="mailto:${o.email}">${MF.esc(o.email)}</a></li>
+        </ul>
+      </div>`).join("");
+  };
+</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

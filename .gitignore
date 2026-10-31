@@ -1,0 +1,13 @@
+# Internal brand documents (kept out of the public repo)
+/Brand Guidelines.pdf
+/MightyFix_Liquid_Nails_TDS.pdf
+
+# Local Claude Code tooling — keep only the preview server config
+/.claude/*
+!/.claude/launch.json
+
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

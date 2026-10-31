@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case studies — MightyFix</title>
+  <meta name="description" content="Placeholder — real projects sealed, bonded and finished with MightyFix.">
+  <link rel="icon" href="assets/img/symbol-navy.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-nav="cases">
+<main id="main" tabindex="-1">
+
+  <section class="page-hero page-hero--compact" aria-labelledby="ph-title">
+    <div class="container page-hero__grid">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><span aria-current="page">Case studies</span></li></ol></nav>
+        <h1 id="ph-title" style="max-width:none">Trusted by the workers.</h1>
+        <p class="lead">Placeholder — real projects, real conditions, real results. See how MightyFix performs on site and on the line.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:var(--s6)">
+        <div class="chips" role="group" aria-label="Filter by sector">
+          <button type="button" class="chip" aria-pressed="true" data-filter="">All</button>
+          <button type="button" class="chip" aria-pressed="false" data-filter="construction">Construction</button>
+          <button type="button" class="chip" aria-pressed="false" data-filter="manufacturing">Manufacturing</button>
+        </div>
+        <p class="muted small" id="cs-count" aria-live="polite"></p>
+      </div>
+      <div class="grid grid--3" id="cs-grid"></div>
+    </div>
+  </section>
+
+</main>
+<script src="assets/js/data.js"></script>
+<script>
+  window.renderPage = function () {
+    const grid = document.getElementById("cs-grid");
+    const count = document.getElementById("cs-count");
+    const draw = (sector) => {
+      const list = CASE_STUDIES.filter((c) => !sector || c.sector === sector);
+      grid.innerHTML = list.map((c) => MF.caseCard(c, { boxed: true })).join("");
+      count.textContent = `Showing ${list.length} case ${list.length === 1 ? "study" : "studies"}`;
+      MF.initReveal(grid);
+    };
+    document.querySelectorAll("[data-filter]").forEach((b) => b.addEventListener("click", () => {
+      document.querySelectorAll("[data-filter]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+      draw(b.dataset.filter);
+    }));
+    draw("");
+  };
+</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Knowledge hub — MightyFix</title>
+  <meta name="description" content="Placeholder — technical insights, how-to videos, case studies and data sheets from MightyFix.">
+  <link rel="icon" href="assets/img/symbol-navy.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-nav="hub">
+<main id="main" tabindex="-1">
+
+  <section class="page-hero page-hero--compact" aria-labelledby="ph-title">
+    <div class="container page-hero__grid">
+      <div>
+        <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><span aria-current="page">Knowledge hub</span></li></ol></nav>
+        <h1 id="ph-title" style="max-width:none">Knowledge hub</h1>
+        <p class="lead">Placeholder — know-how from the people who make it. Technical insights, quick videos, case studies and every data sheet in one place.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="subnav" aria-label="Knowledge hub sections"><div class="container">
+    <span class="subnav__label">Jump to</span>
+    <a href="#insights">Technical insights</a>
+    <a href="#videos">MightyFix shorts</a>
+    <a href="#stories">Customer stories</a>
+    <a href="#brochures">Brochures</a>
+    <a href="#downloads">Downloads & data sheets</a>
+  </div></nav>
+
+  <section class="section" aria-label="Featured article">
+    <div class="container">
+      <article class="featured-article on-dark" data-reveal>
+        <div class="featured-article__media"><img src="https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&w=1600&q=70" alt="" loading="lazy"></div>
+        <div class="featured-article__body">
+          <p class="eyebrow">Featured · Research & development</p>
+          <h2 class="h2"><a href="article.html?id=inside-the-lab">Inside the lab: how we stress-test every formula</a></h2>
+          <p class="muted">Placeholder — a short standfirst for the featured article, two lines at most.</p>
+          <span class="link-arrow" aria-hidden="true">Read article <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="insights" aria-labelledby="ins-title" style="padding-top:0">
+    <div class="container">
+      <div class="section-head"><div data-reveal><p class="eyebrow">Technical insights <span class="chip__count">(6)</span></p><h2 id="ins-title" class="mt-5">Know more. Fix better.</h2></div></div>
+      <div class="grid grid--3" data-articles="6"></div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="videos" aria-labelledby="vid-title">
+    <div class="container">
+      <div class="section-head"><div data-reveal><p class="eyebrow">MightyFix shorts <span class="chip__count">(4)</span></p><h2 id="vid-title" class="mt-5">Two-minute how-tos.</h2></div></div>
+      <div class="grid grid--4" data-videos></div>
+    </div>
+  </section>
+
+  <section class="section" id="stories" aria-labelledby="st-title">
+    <div class="container">
+      <div class="section-head">
+        <div data-reveal><p class="eyebrow">Customer stories</p><h2 id="st-title" class="mt-5">Proven on the job.</h2></div>
+        <a class="link-arrow" href="case-studies.html" data-reveal>All case studies <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <div class="grid grid--3" data-cases="3"></div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="brochures" aria-labelledby="br-title">
+    <div class="container">
+      <div class="section-head"><div data-reveal><p class="eyebrow">Brochures</p><h2 id="br-title" class="mt-5">Take the range with you.</h2></div></div>
+      <div class="grid grid--3">
+        <button type="button" class="download" data-open="download" data-dl-name="MightyFix product catalogue" data-reveal><span class="download__icon"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span><span><strong>Product catalogue 2026</strong><span>PDF · XX MB</span></span><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></button>
+        <button type="button" class="download" data-open="download" data-dl-name="Construction solutions guide" data-reveal><span class="download__icon"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span><span><strong>Construction solutions guide</strong><span>PDF · XX MB</span></span><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></button>
+        <button type="button" class="download" data-open="download" data-dl-name="Manufacturing solutions guide" data-reveal><span class="download__icon"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span><span><strong>Manufacturing solutions guide</strong><span>PDF · XX MB</span></span><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="downloads" aria-labelledby="dl-title">
+    <div class="container">
+      <div class="section-head">
+        <div data-reveal><p class="eyebrow">Downloads & specifications</p><h2 id="dl-title" class="mt-5">Every data sheet, in one place.</h2></div>
+        <div style="min-width:min(100%,360px)">
+          <label class="visually-hidden" for="doc-filter">Filter data sheets by product name</label>
+          <div class="finder-search"><input class="input" id="doc-filter" type="search" placeholder="Filter by product name" autocomplete="off"><span class="icon-btn" aria-hidden="true" style="background:var(--navy)"><svg class="icon"><use href="#i-search"/></svg></span></div>
+        </div>
+      </div>
+      <ul class="doc-list" id="doc-list"></ul>
+      <p class="muted mt-5" id="doc-empty" hidden>No data sheets match that name.</p>
+      <p class="visually-hidden" aria-live="polite" id="doc-count"></p>
+    </div>
+  </section>
+
+</main>
+<script src="assets/js/data.js"></script>
+<script>
+  window.renderPage = function () {
+    const list = document.getElementById("doc-list");
+    list.innerHTML = PRODUCTS.map((p) => {
+      const cat = byCat(p.cat);
+      return `<li data-name="${p.name.toLowerCase()}">
+        <strong><span class="chip__dot" style="background:${cat.color}"></span><a href="product.html?p=${p.slug}" style="color:inherit;text-decoration:none">${MF.esc(p.name)}</a></strong>
+        <span class="cat">${MF.esc(cat.name)}</span>
+        <span class="doc-actions">
+          ${p.tds
+            ? `<a href="${p.tds.file}" target="_blank" rel="noopener" style="min-height:40px;padding:0 var(--s4);background:var(--navy);color:#fff;font-size:var(--fs-small);font-weight:500;display:inline-flex;align-items:center;gap:6px;text-decoration:none">${MF.ic("download")}TDS</a>`
+            : `<button type="button" data-open="download" data-dl-name="${MF.esc(p.name)} — Technical data sheet">${MF.ic("download")}TDS</button>`}
+          <button type="button" data-open="download" data-dl-name="${MF.esc(p.name)} — Safety data sheet">${MF.ic("download")}SDS</button>
+        </span></li>`;
+    }).join("");
+    const input = document.getElementById("doc-filter");
+    input.addEventListener("input", () => {
+      const q = input.value.trim().toLowerCase();
+      let n = 0;
+      list.querySelectorAll("li").forEach((li) => { const show = li.dataset.name.includes(q); li.hidden = !show; n += show; });
+      document.getElementById("doc-empty").hidden = n > 0;
+      document.getElementById("doc-count").textContent = `${n} data sheets shown`;
+    });
+  };
+</script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
