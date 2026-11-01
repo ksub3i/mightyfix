@@ -147,7 +147,7 @@ function renderProduct(el) {
     packaging: p.size,
   };
   const variant = [p.size.split("/")[0].trim(), p.colour].filter(Boolean).join(" · ");
-  const hero = p.cutout ? `<img src="${p.cutout}" alt="${MF.esc(p.name)}, ${MF.esc(p.size)}" width="197" height="625">` : MF.packSVG(p);
+  const hero = p.cutout ? `<img src="${p.cutout}" alt="${MF.esc(p.name)}, ${MF.esc(p.size)}" width="186" height="606">` : MF.packSVG(p);
   const slides = (apps.length ? apps : [{ name: cat.name, photo: cat.photo }]).slice(0, 4);
   const sectorIcon = { construction: "building", manufacturing: "factory", "home-diy": "home" };
   const navItems = [["overview", "Overview"], ["applications", "Applications"], ["how-to-use", "How to use"], ["technical-data", "Technical data"], ["downloads", "Downloads"], ["faqs", "FAQs"], ["related", "Related products"]];
