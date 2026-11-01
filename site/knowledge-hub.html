@@ -111,6 +111,7 @@
         <span class="doc-actions">
           ${p.tds
             ? `<a href="${p.tds.file}" target="_blank" rel="noopener" style="min-height:40px;padding:0 var(--s4);background:var(--navy);color:#fff;font-size:var(--fs-small);font-weight:500;display:inline-flex;align-items:center;gap:6px;text-decoration:none">${MF.ic("download")}TDS</a>`
+            : p.real ? `<button type="button" data-open="expert">${MF.ic("download")}TDS</button>`
             : `<button type="button" data-open="download" data-dl-name="${MF.esc(p.name)} — Technical data sheet">${MF.ic("download")}TDS</button>`}
           <button type="button" data-open="download" data-dl-name="${MF.esc(p.name)} — Safety data sheet">${MF.ic("download")}SDS</button>
         </span></li>`;

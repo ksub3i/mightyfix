@@ -150,7 +150,8 @@ function renderProduct(el) {
   const hero = p.cutout ? `<img src="${p.cutout}" alt="${MF.esc(p.name)}, ${MF.esc(p.size)}" width="186" height="606">` : MF.packSVG(p);
   const slides = (apps.length ? apps : [{ name: cat.name, photo: cat.photo }]).slice(0, 4);
   const sectorIcon = { construction: "building", manufacturing: "factory", "home-diy": "home" };
-  const navItems = [["overview", "Overview"], ["applications", "Applications"], ["how-to-use", "How to use"], ["technical-data", "Technical data"], ["downloads", "Downloads"], ["faqs", "FAQs"], ["related", "Related products"]];
+  const hasHowto = !!(D.howto && D.howto.length);
+  const navItems = [["overview", "Overview"], ["applications", "Applications"], hasHowto && ["how-to-use", "How to use"], ["technical-data", "Technical data"], ["downloads", "Downloads"], ["faqs", "FAQs"], ["related", "Related products"]].filter(Boolean);
   const title = (id, text) => `<h2 class="prod-sec__title" id="${id}-title">${MF.esc(text)}</h2>`;
   const dots = (items, cls = "") => `<ul class="prod-dots ${cls}">${items.map((t) => `<li>${MF.esc(t)}</li>`).join("")}</ul>`;
   const related = PRODUCTS.filter((x) => x.cat === p.cat && x.slug !== p.slug).concat(PRODUCTS.filter((x) => x.cat !== p.cat && x.sectors.some((s) => p.sectors.includes(s)))).slice(0, 3);
@@ -199,7 +200,7 @@ function renderProduct(el) {
         <section class="prod-sec" id="applications" aria-labelledby="applications-title">
           ${title("applications", "Applications")}
           ${dots(D.uses, "prod-dots--2")}
-          ${real ? `<p class="prod-see-all">Key features are listed in our <a href="${p.tds.file}" target="_blank" rel="noopener">Technical Data Sheet</a>.</p>` : ""}
+          ${p.tds ? `<p class="prod-see-all">Key features are listed in our <a href="${p.tds.file}" target="_blank" rel="noopener">Technical Data Sheet</a>.</p>` : ""}
           ${real ? `<div class="prod-sec__sub"><h3 class="h4" style="margin:30px 0 20px">Product features</h3>
             <div class="prod-steps">${p.features.map(([t, d]) => `<p class="prod-step"><b>${MF.esc(t)}</b>${MF.esc(d)}</p>`).join("")}</div></div>` : ""}
           <div class="prod-slider" data-prod-slider>
@@ -216,11 +217,11 @@ function renderProduct(el) {
           </div>
         </section>
 
-        <section class="prod-sec" id="how-to-use" aria-labelledby="how-to-use-title">
+        ${hasHowto ? `<section class="prod-sec" id="how-to-use" aria-labelledby="how-to-use-title">
           ${title("how-to-use", "How to use")}
           <div class="prod-steps">${D.howto.map(([t, d]) => `<p class="prod-step"><b>${MF.esc(t)}</b>${MF.esc(d)}</p>`).join("")}</div>
-          ${real ? `<p class="prod-note"><b>Important notes.</b> ${MF.esc(p.notes)}</p>` : ""}
-        </section>
+          ${p.notes ? `<p class="prod-note"><b>Important notes.</b> ${MF.esc(p.notes)}</p>` : ""}
+        </section>` : ""}
 
         <section class="prod-sec" id="technical-data" aria-labelledby="technical-data-title">
           ${title("technical-data", "Technical data")}
@@ -228,20 +229,22 @@ function renderProduct(el) {
             <thead><tr><th scope="col">Parameter</th><th scope="col">Unit</th><th scope="col">Typical value</th></tr></thead>
             <tbody>${D.specs.map(([k, u, v]) => `<tr><th scope="row">${MF.esc(k)}</th><td${u === "—" ? ' class="no-unit"' : ""}>${MF.esc(u)}</td><td>${MF.esc(v)}</td></tr>`).join("")}
               <tr><th scope="row">Packaging</th><td class="no-unit">—</td><td>${MF.esc(D.packaging)}</td></tr>
-              ${real ? `<tr><th scope="row">Storage</th><td class="no-unit">—</td><td>${MF.esc(p.storage)}</td></tr>` : ""}</tbody>
+              ${D.storage ? `<tr><th scope="row">Storage</th><td class="no-unit">—</td><td>${MF.esc(p.storage)}</td></tr>` : ""}</tbody>
           </table></div>
-          <p class="prod-specs-note">${MF.esc(D.specsNote)}</p>
+          ${D.specsNote ? `<p class="prod-specs-note">${MF.esc(D.specsNote)}</p>` : ""}
         </section>
 
         <section class="prod-sec" id="downloads" aria-labelledby="downloads-title" style="padding-bottom:100px">
           ${title("downloads", "Downloads")}
           <div class="prod-downloads">
-            ${real
+            ${p.tds
               ? `<a class="prod-dl" href="${p.tds.file}" target="_blank" rel="noopener">${MF.ic("download")}Technical Data Sheet</a>
                  <button type="button" class="prod-dl" data-open="expert">${MF.ic("download")}Safety Data Sheet</button>`
+              : real ? ["Technical Data Sheet", "Safety Data Sheet"].map((t) => `<button type="button" class="prod-dl" data-open="expert">${MF.ic("download")}${t}</button>`).join("")
               : ["Technical Data Sheet", "Safety Data Sheet"].map((t) => `<button type="button" class="prod-dl" data-open="download" data-dl-name="${MF.esc(p.name)} — ${t}">${MF.ic("download")}${t}</button>`).join("")}
           </div>
-          ${real ? `<p class="prod-specs-note">${MF.esc(p.tds.code)} · ${MF.esc(p.tds.version)} · issued ${MF.esc(p.tds.issued)}. Safety Data Sheet available on request.</p>` : ""}
+          ${real && !p.tds ? `<p class="prod-specs-note">Data sheets for ${MF.esc(p.name)} are available on request — ask our team.</p>` : ""}
+          ${p.tds ? `<p class="prod-specs-note">${MF.esc(p.tds.code)} · ${MF.esc(p.tds.version)} · issued ${MF.esc(p.tds.issued)}. Safety Data Sheet available on request.</p>` : ""}
         </section>
 
         <section class="prod-sec" id="faqs" aria-labelledby="faqs-title" style="padding-bottom:0">
