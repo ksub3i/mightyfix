@@ -85,6 +85,7 @@ const PRODUCTS = [
   { slug: "liquid-nails", name: "MightyFix Liquid Nails", cat: "adhesives", range: null, group: "Solvent-based",
     real: true,
     image: "assets/img/products/mightyfix-liquid-nails.jpg",
+    cutout: "assets/img/products/mightyfix-liquid-nails.png", // transparent pack shot for dark backgrounds
     tagline: "High strength synthetic rubber adhesive", size: "300 mL cartridge", colour: "White",
     bullets: ["Instant grab — no clamping or propping", "Bonds wood, concrete, tile, stone, metal & glass", "Holds in wet and underwater conditions"],
     sectors: ["construction", "manufacturing"], apps: ["construction-adhesives", "joinery", "panel-bonding"],

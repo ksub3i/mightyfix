@@ -631,8 +631,10 @@ function initReveal(root = document) {
 }
 
 function initSubnav() {
-  const nav = document.querySelector(".subnav");
-  if (!nav) return;
+  // Works for the horizontal sub-nav and the product page's sticky side menu
+  document.querySelectorAll(".subnav, .prod-nav").forEach(watchNav);
+}
+function watchNav(nav) {
   const links = [...nav.querySelectorAll('a[href^="#"]')];
   const targets = links.map((a) => document.getElementById(a.getAttribute("href").slice(1))).filter(Boolean);
   if (!("IntersectionObserver" in window)) return;
