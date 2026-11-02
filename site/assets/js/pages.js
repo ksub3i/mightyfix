@@ -66,12 +66,12 @@ function renderProducts(el) {
       </div>
     </section>`;
   }).join("")}
-  <section class="section section--navy on-dark" aria-labelledby="ranges-title">
+  <section class="section section--ice" aria-labelledby="ranges-title">
     <div class="container">
       <div class="section-head"><div data-reveal><p class="eyebrow">Ranges</p><h2 id="ranges-title" class="mt-5">Five ranges. One standard: it holds.</h2></div></div>
-      <div class="grid grid--3">${RANGES.map((r) => `<a class="download" href="product-category.html?r=${r.slug}" data-reveal style="background:var(--azure);border-color:var(--line-dark)">
-        <span class="download__icon" style="background:var(--navy)">${MF.ic("box")}</span>
-        <span><strong style="color:#fff">${MF.esc(r.name)}</strong><span style="color:rgba(255,255,255,.78)">${MF.esc(r.note)}</span></span>${MF.ic("arrow-right")}</a>`).join("")}</div>
+      <div class="grid grid--3">${RANGES.map((r) => `<a class="download" href="product-category.html?r=${r.slug}" data-reveal>
+        <span class="download__icon">${MF.ic("box")}</span>
+        <span><strong>${MF.esc(r.name)}</strong><span>${MF.esc(r.note)}</span></span>${MF.ic("arrow-right")}</a>`).join("")}</div>
     </div>
   </section>`;
 }
