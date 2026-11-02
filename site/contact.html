@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -92,7 +93,14 @@
 
   <section class="contact-map" id="contact-map" aria-labelledby="map-title" hidden>
     <h2 id="map-title" class="visually-hidden">Find us</h2>
-    <iframe title="MightyFix location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    <div id="contact-map-canvas" class="contact-map__canvas" role="region" aria-label="Map showing the MightyFix location"></div>
+    <div class="container contact-map__overlay">
+      <div class="contact-map__card">
+        <p class="contact-map__label">MightyFix</p>
+        <p id="map-address"></p>
+        <a id="map-directions" class="link-arrow" target="_blank" rel="noopener">Get directions <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+    </div>
   </section>
 
 </main>
@@ -100,9 +108,9 @@
 <script>
   window.renderPage = function () {
     if (MAP_ADDRESS) {
-      const map = document.getElementById("contact-map");
-      map.querySelector("iframe").src = "https://www.google.com/maps?q=" + encodeURIComponent(MAP_ADDRESS) + "&output=embed";
-      map.hidden = false;
+      document.getElementById("contact-map").hidden = false;
+      document.getElementById("map-address").textContent = MAP_ADDRESS;
+      document.getElementById("map-directions").href = "https://www.google.com/maps/dir/?api=1&destination=" + MAP_LOCATION.lat + "," + MAP_LOCATION.lng;
     }
     document.getElementById("office-cards").innerHTML = OFFICES.map((o) => `
       <div class="contact-card" data-reveal>
@@ -116,5 +124,7 @@
   };
 </script>
 <script src="assets/js/main.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="assets/js/contact-map.js"></script>
 </body>
 </html>

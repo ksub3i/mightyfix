@@ -488,9 +488,10 @@ const CASE_STUDIES = [
 /* Add real offices here ({ name, city, address, phone, email }) — the contact page lists them automatically. */
 const OFFICES = [];
 
-/* Contact-page map: set this to your street address (or paste a Google Maps place name).
-   Leave it empty and the map section stays hidden. */
+/* Contact-page map. Address is shown on the map card and used for directions; the pin uses lat/lng.
+   (Coordinates from Google Maps for this address.) Set MAP_ADDRESS to "" to hide the map. */
 const MAP_ADDRESS = "Ma. Fiyajahaage, Nikagas Magu, Malé 20166, Maldives";
+const MAP_LOCATION = { lat: 4.173358, lng: 73.509065 };
 
 /* Lookups */
 const byCat = (slug) => CATEGORIES.find((c) => c.slug === slug);
