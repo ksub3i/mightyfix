@@ -67,13 +67,28 @@
   </section>
 
   <!-- Categories -->
-  <section class="home-cats" aria-labelledby="cats-title">
-    <div class="container home-cats__grid">
-      <div class="home-cats__media" data-reveal><img id="home-cats-img" src="" alt="" width="1200" height="948"></div>
-      <div data-reveal style="--d:120ms">
-        <h2 id="cats-title">Every job covered. Every product proven.</h2>
-        <ul class="home-cats__list" id="home-cats-list"></ul>
+  <section class="section" aria-labelledby="cats-title">
+    <div class="container">
+      <div class="section-head">
+        <div data-reveal>
+          <p class="eyebrow">The MightyFix range</p>
+          <h2 id="cats-title" class="mt-5">Every job covered. Every product proven.</h2>
+          <p class="lead muted">Every product line has its own colour band, so you can tell at a glance what it's for.</p>
+        </div>
+        <a class="btn btn--plain" href="products.html" data-reveal>All products</a>
       </div>
+      <div class="tiles tiles--3" data-category-tiles></div>
+    </div>
+  </section>
+
+  <!-- Popular products -->
+  <section class="section section--paper" aria-labelledby="popular-title">
+    <div class="container">
+      <div class="section-head">
+        <div data-reveal><p class="eyebrow">Trade favourites</p><h2 id="popular-title" class="mt-5">From the shower to the rooftop.</h2></div>
+        <a class="link-arrow" href="products.html" data-reveal>View all products <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <div class="products products--4" data-products data-slugs="liquid-nails,mightyseal-wet-area,mightyfoam-gun,mightytape-mount"></div>
     </div>
   </section>
 
@@ -113,6 +128,28 @@
     </div>
   </section>
 
+  <!-- Applications -->
+  <section class="section" aria-labelledby="apps-title">
+    <div class="container">
+      <div class="section-head">
+        <div data-reveal><p class="eyebrow">Applications</p><h2 id="apps-title" class="mt-5">Whatever the job, there’s a MightyFix for it.</h2></div>
+        <a class="link-arrow" href="applications.html" data-reveal>All applications <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <div class="tiles tiles--3" data-sector-tiles></div>
+    </div>
+  </section>
+
+  <!-- Knowledge teaser -->
+  <section class="section section--paper" aria-labelledby="hub-title">
+    <div class="container">
+      <div class="section-head">
+        <div data-reveal><p class="eyebrow">Knowledge hub</p><h2 id="hub-title" class="mt-5">Expert advice, straight from the lab.</h2></div>
+        <a class="link-arrow" href="knowledge-hub.html" data-reveal>Visit the knowledge hub <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      </div>
+      <div class="grid grid--3" data-articles="3"></div>
+    </div>
+  </section>
+
   <!-- Newsletter -->
   <section class="newsletter-band" aria-labelledby="nl-title">
     <div class="container newsletter-band__grid">
@@ -126,20 +163,6 @@
 
 </main>
 <script src="assets/js/data.js"></script>
-<script>
-  window.renderPage = function () {
-    const img = document.getElementById("home-cats-img");
-    const show = (c) => { img.src = IMG(PHOTOS[c.photo], 1200); img.alt = c.name; };
-    document.getElementById("home-cats-list").innerHTML = CATEGORIES.map((c, i) =>
-      `<li><a href="product-category.html?c=${c.slug}" data-i="${i}"><span><span class="home-cats__dot" style="background:${c.color}"></span>${c.name}</span>${MF.ic("arrow-right")}</a></li>`).join("");
-    document.querySelectorAll("#home-cats-list a").forEach((a) => {
-      const c = CATEGORIES[a.dataset.i];
-      a.addEventListener("mouseenter", () => show(c));
-      a.addEventListener("focus", () => show(c));
-    });
-    show(CATEGORIES[0]);
-  };
-</script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
