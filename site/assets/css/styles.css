@@ -581,8 +581,7 @@ dialog.modal--video { width: min(1100px, calc(100vw - 2rem)); background: #000; 
 .prod-banner__grid { display: grid; gap: var(--s6); align-items: center; }
 @media (min-width: 960px) { .prod-banner__grid { grid-template-columns: 5fr 1fr 5fr; } .prod-banner__copy { grid-column: 3; } }
 .prod-banner__media { display: flex; flex-direction: column; align-items: center; }
-.prod-banner__stage { position: relative; width: 100%; max-width: 500px; aspect-ratio: 1; display: grid; place-items: center;
-  background: radial-gradient(closest-side, rgba(136, 192, 209, 0.22), rgba(136, 192, 209, 0) 72%); }
+.prod-banner__stage { position: relative; width: 100%; max-width: 500px; aspect-ratio: 1; display: grid; place-items: center; }
 .prod-banner__stage svg { height: min(440px, 80vw); width: auto; filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.35)); }
 .prod-banner__stage img { height: auto; max-height: min(440px, 80vw); width: auto; max-width: 100%; filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.35)); }
 .prod-banner__variant { margin-top: var(--s5); min-width: 160px; padding-inline: 12px; white-space: nowrap; padding-top: 10px; border-top: 2px solid var(--halfbaked); text-align: center; font-size: 0.875rem; font-weight: 600; line-height: 1.6; }
