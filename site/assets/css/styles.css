@@ -399,7 +399,7 @@ body.no-scroll { overflow: hidden; }
 .pcard:hover { border-color: var(--halfbaked); box-shadow: var(--shadow); }
 .pcard__media { position: relative; aspect-ratio: 1 / 1; background: var(--white); display: grid; place-items: center; overflow: hidden; }
 .pcard__media svg, .pcard__media .pack-photo { height: 78%; width: auto; transition: transform var(--dur-3) var(--ease-out); }
-.pcard__media .pack-photo { height: 100%; }
+.pcard__media .pack-photo { height: 80%; max-width: 80%; }
 .pcard:hover .pcard__media svg, .pcard:hover .pcard__media .pack-photo { transform: translateY(-6px) rotate(-2deg); }
 /* Real pack shots are on white — multiply drops the white onto the tinted backdrop */
 .pack-photo { mix-blend-mode: multiply; object-fit: contain; }
