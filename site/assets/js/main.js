@@ -619,6 +619,26 @@ function initReveal(root = document) {
   }), 1500);
 }
 
+/* Stat figures count up from 0 the first time they scroll into view.
+   The final number is in the HTML, so it shows as-is without JavaScript or with reduced motion. */
+function initCounters() {
+  const els = [...document.querySelectorAll("[data-count]")];
+  if (!els.length || !("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const run = (el) => {
+    const target = parseInt(el.dataset.count, 10), suffix = el.dataset.suffix || "", start = performance.now(), dur = 1400;
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / dur), eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(target * eased) + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver((entries) => entries.forEach((en) => {
+    if (en.isIntersecting) { io.unobserve(en.target); run(en.target); }
+  }), { threshold: 0.6 });
+  els.forEach((el) => { el.textContent = "0" + (el.dataset.suffix || ""); io.observe(el); });
+}
+
 function initSubnav() {
   // Works for the horizontal sub-nav and the product page's sticky side menu
   document.querySelectorAll(".subnav, .prod-nav").forEach(watchNav);
@@ -650,5 +670,6 @@ window.MF = { ic, btn, esc, param, packSVG, productCard, tile, articleCard, case
   initForms();
   initCarousels();
   initSubnav();
+  initCounters();
   initReveal();
 })();
