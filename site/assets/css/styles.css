@@ -1010,7 +1010,6 @@ h3, .h3 { font-weight: 700; line-height: 1.4; letter-spacing: 0; }
 @media (min-width: 960px) { .newsletter-band__grid { grid-template-columns: 1fr auto; } }
 
 /* Footer: Sabre — sign-off and button left, contact links right, copyright below */
-.site-footer { padding: 115px 0 40px; font-size: 1rem; }
 .footer__upper { display: grid; gap: var(--s7); }
 @media (min-width: 960px) { .footer__upper { grid-template-columns: 5fr 3fr 4fr; } .footer__connect { grid-column: 3; } }
 .footer__line { font-size: clamp(2.25rem, 1.4rem + 2.6vw, 3.625rem); font-weight: 600; line-height: 1.1; letter-spacing: -1px; margin-bottom: 60px; }

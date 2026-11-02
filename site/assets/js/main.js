@@ -305,22 +305,47 @@ function headerHTML() {
   </div>`;
 }
 
+function ctaBandHTML() {
+  return `<section class="section section--ice" aria-labelledby="cta-band-title">
+    <div class="container cta-band">
+      <div data-reveal>
+        <p class="eyebrow">Talk to an expert</p>
+        <h2 id="cta-band-title" class="mt-5">Fix it once, fix it right.</h2>
+        <p class="lead mt-5 muted">Not sure which product fits the job? Our team will point you to the right one.</p>
+      </div>
+      <div class="cta-band__actions" data-reveal style="--d:120ms">
+        ${btn("Talk to an expert", { cls: "", icon: "headset", attrs: 'data-open="expert"' })}
+        ${btn("Sign up to our newsletter", { cls: "btn--white", icon: "mail", attrs: 'data-open="newsletter"' })}
+      </div>
+    </div>
+  </section>`;
+}
+
 function footerHTML() {
   return `<footer class="site-footer on-dark">
     <div class="container">
-      <div class="footer__upper">
-        <div class="footer__signoff">
-          <p class="footer__line">Fix it once, fix it right.</p>
-          <button type="button" class="btn-solid" data-open="expert">Talk to an expert</button>
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/img/wordmark-white.png" alt="MightyFix" width="176" height="36">
+          <p>Sealants and adhesives made for real work. Built for pros. Easy for everyone.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="MightyFix on LinkedIn">${ic("linkedin")}</a>
+            <a href="#" aria-label="MightyFix on Instagram">${ic("instagram")}</a>
+            <a href="#" aria-label="MightyFix on Facebook">${ic("facebook")}</a>
+            <a href="#" aria-label="MightyFix on YouTube">${ic("youtube")}</a>
+          </div>
         </div>
-        <ul class="footer__connect">
-          <li><a href="#">${ic("linkedin")}Connect on LinkedIn</a></li>
-          <li><a href="#" data-open="newsletter">${ic("mail")}Sign up to our newsletter</a></li>
-        </ul>
+        <div class="footer__cols">
+          <div><p class="footer__title">Products</p><ul class="footer__links">${CATEGORIES.map((c) => `<li><a href="product-category.html?c=${c.slug}">${esc(c.name)}</a></li>`).join("")}<li><a href="product-finder.html">Product finder</a></li></ul></div>
+          <div><p class="footer__title">Applications</p><ul class="footer__links">${SECTORS.map((s) => `<li><a href="application.html?a=${s.slug}">${esc(s.name)}</a></li>`).join("")}<li><a href="case-studies.html">Case studies</a></li></ul></div>
+          <div><p class="footer__title">Company</p><ul class="footer__links">
+            <li><a href="company.html">About MightyFix</a></li><li><a href="knowledge-hub.html">Knowledge hub</a></li>
+            <li><a href="knowledge-hub.html#downloads">Downloads</a></li><li><a href="company.html#careers">Careers</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+        </div>
       </div>
-      <div class="footer__lower">
-        <p>© ${new Date().getFullYear()} MightyFix</p>
-        <ul><li><a href="#">Privacy policy</a></li><li><a href="#">Terms</a></li></ul>
+      <div class="footer__bottom">
+        <p>© ${new Date().getFullYear()} MightyFix. All rights reserved.</p>
+        <ul><li><a href="#">Privacy policy</a></li><li><a href="#">Terms</a></li><li><a href="#">Cookies</a></li></ul>
       </div>
     </div>
   </footer>`;
@@ -615,6 +640,7 @@ window.MF = { ic, btn, esc, param, packSVG, productCard, tile, articleCard, case
 (function boot() {
   document.body.insertAdjacentHTML("afterbegin", sprite() + headerHTML());
   const main = document.getElementById("main");
+  if (!document.body.hasAttribute("data-no-cta")) main.insertAdjacentHTML("beforeend", ctaBandHTML());
   document.body.insertAdjacentHTML("beforeend", footerHTML() + modalsHTML());
 
   if (typeof window.renderPage === "function") window.renderPage();
