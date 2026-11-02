@@ -490,7 +490,7 @@ const OFFICES = [];
 
 /* Contact-page map: set this to your street address (or paste a Google Maps place name).
    Leave it empty and the map section stays hidden. */
-const MAP_ADDRESS = "";
+const MAP_ADDRESS = "Ma. Fiyajahaage, Nikagas Magu, Malé 20166, Maldives";
 
 /* Lookups */
 const byCat = (slug) => CATEGORIES.find((c) => c.slug === slug);
