@@ -1067,3 +1067,4 @@ h3, .h3 { font-weight: 700; line-height: 1.4; letter-spacing: 0; }
 .pcard__dots li { line-height: 1.94; }
 .sector-banner h1 { line-height: 1.1; }
 @media (min-width: 1200px) { .intro-3 .split { grid-template-columns: repeat(3, 297px); justify-content: start; } }
+.feature__text { display: block; max-width: 34rem; font-size: 1rem; font-weight: 500; line-height: 1.5; color: rgba(255, 255, 255, 0.86); }
