@@ -6,6 +6,25 @@
 */
 
 const slugify = (s) => s.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+const GROUP_INFO = {
+  "Hybrid MS polymer": "Hybrid (MS polymer) products bond and seal in one. They stay flexible, can be painted and don't contain silicone, isocyanates or solvents.",
+  "Solvent-based": "Solvent-based adhesives grab quickly and suit general construction bonding, especially on porous surfaces like timber and board.",
+  "Polyurethane": "Polyurethane products cure with moisture in the air into a tough, elastic material. They take paint and suit high-movement joints and structural bonds.",
+  "Silicone": "Silicone sealants stay flexible for years and resist water, UV and temperature swings. Most can't be painted, which makes them a fit for wet areas, glazing and facades.",
+  "Acrylic": "Acrylic sealants are water-based, low odour and paintable. They suit interior joints and gaps that don't move much.",
+  "Fire-rated": "Fire-rated products are tested to help keep the fire resistance of walls and floors intact at joints and service penetrations.",
+  "Gap fillers": "Gap fillers close small interior gaps and cracks before painting, and sand smooth once dry.",
+  "Crack repair": "Crack repair compounds fill cracks in walls and ceilings and stay flexible enough to move with the building.",
+  "Patching compounds": "Patching compounds repair holes and damaged areas in walls before decorating.",
+  "Floor levelling": "Self levelling compounds flow out under their own weight to give a flat, smooth base for floor coverings.",
+  "Gun-grade foam": "Gun-grade foams are applied with a foam gun for precise, controlled filling around frames and penetrations.",
+  "Straw foam": "Straw foams come with an applicator straw for quick filling of gaps and voids without extra tools.",
+  "Fire-rated foam": "Fire-rated foams fill and seal service penetrations in fire-rated walls and floors.",
+  "Mounting tapes": "Double-sided mounting tapes hold fixtures and fittings instantly, with no drilling and no cure time.",
+  "Sealing tapes": "Sealing tapes make joints, overlaps and small holes watertight straight off the roll.",
+  "Primers": "Primers prepare porous or difficult surfaces so sealants and adhesives bond properly.",
+  "Cleaners & wipes": "Cleaners and wipes remove dirt, grease and uncured product from surfaces, tools and hands.",
+};
 const crumbs = (items) => `<nav class="crumbs" aria-label="Breadcrumb"><ol>${items.map((it, i) =>
   i === items.length - 1 ? `<li><span aria-current="page">${MF.esc(it[0])}</span></li>` : `<li><a href="${it[1]}">${MF.esc(it[0])}</a></li>`).join("")}</ol></nav>`;
 const arrowLink = (label, href) => `<a class="link-arrow" href="${href}">${MF.esc(label)} ${MF.ic("arrow-right")}</a>`;
@@ -23,7 +42,7 @@ function renderProducts(el) {
         ${crumbs([["Home", "index.html"], ["Products"]])}
         <p class="eyebrow">Products</p>
         <h1 id="ph-title" class="mt-5">Proven performance for every job.</h1>
-        <p class="lead">Placeholder — sealants, adhesives, foams, tapes and prep products for construction, manufacturing and the home.</p>
+        <p class="lead">Sealants, adhesives, foams, tapes and floor preparation for construction, manufacturing and the home.</p>
         <div class="page-hero__actions">${MF.btn("Product finder", { href: "product-finder.html", cls: "btn--light", icon: "search" })}${MF.btn("Talk to an expert", { cls: "btn--white", icon: "headset", attrs: 'data-open="expert"' })}</div>
       </div>
       <div class="page-hero__media"><img src="${IMG(PHOTOS.tools, 1400)}" alt="" width="1400" height="900"></div>
@@ -69,7 +88,7 @@ function renderCategory(el) {
     groups = cat.groups.map((g) => ({ name: g, attrs: `data-cat="${cat.slug}" data-group="${g}"`, n: PRODUCTS.filter((p) => p.cat === cat.slug && p.group === g).length }));
     crumb = "Product categories";
   } else {
-    title = r.name; intro = `Placeholder — ${r.note}. ${r.name} brings together the products trades reach for first.`; photo = "crew"; color = "var(--halfbaked)";
+    title = r.name; intro = `${r.note} from MightyFix.`; photo = "crew"; color = "var(--halfbaked)";
     groups = CATEGORIES.map((k) => ({ name: k.name, attrs: `data-range="${r.slug}" data-cat="${k.slug}"`, n: PRODUCTS.filter((p) => p.range === r.slug && p.cat === k.slug).length })).filter((g) => g.n);
     crumb = "Ranges";
   }
@@ -100,7 +119,7 @@ function renderCategory(el) {
         </div>
         <div class="accordion" style="margin-bottom:var(--s6)">
           <details><summary>What ${/s$/.test(g.name) ? "are" : "is"} ${MF.esc(g.name.toLowerCase())}?<span class="acc-icon">${MF.ic("plus")}</span></summary>
-            <div class="acc-body"><p>Placeholder — a short, plain-English explainer of this product type: what it is, when to use it, and when to choose something else.</p></div></details>
+            <div class="acc-body"><p>${MF.esc(GROUP_INFO[g.name] || (byCat(g.attrs.match(/data-cat="([^"]+)"/)?.[1] || "") || {}).intro || "")}</p></div></details>
         </div>
         <div class="products" data-products ${g.attrs}></div>
       </div>
@@ -108,11 +127,9 @@ function renderCategory(el) {
   <section class="section" aria-label="About ${MF.esc(lower)}">
     <div class="container split split--even">
       <div class="prose" data-reveal><h2 class="h3" style="margin-top:0">Types of ${MF.esc(lower)}</h2>
-        <p>Placeholder — overview copy explaining the main types in this range and how they differ.</p>
-        <ul>${groups.map((g) => `<li><strong>${MF.esc(g.name)}</strong> — placeholder one-line description.</li>`).join("")}</ul></div>
+        <ul>${groups.map((g) => `<li><strong>${MF.esc(g.name)}</strong> — ${MF.esc((GROUP_INFO[g.name] || (byCat(g.attrs.match(/data-cat="([^"]+)"/)?.[1] || "") || {}).intro || "").split(". ")[0].replace(/\.$/, ""))}.</li>`).join("")}</ul></div>
       <div class="prose" data-reveal style="--d:120ms"><h2 class="h3" style="margin-top:0">Where they're used</h2>
-        <p>Placeholder — typical applications and the trades that use them.</p>
-        <ul><li>Joint sealing and gap filling</li><li>Bathrooms and wet areas</li><li>Roofing and exterior facades</li><li>Vehicle and marine manufacturing</li></ul></div>
+        <ul>${allApps().filter((a) => PRODUCTS.some((p) => (cat ? p.cat === cat.slug : p.range === r.slug) && p.apps.includes(a.slug))).map((a) => `<li><a href="application.html?a=${a.slug}">${MF.esc(a.name)}</a></li>`).join("")}</ul></div>
     </div>
     <div class="container mt-7"><p class="eyebrow">See also</p>
       <div class="see-also mt-5">${CATEGORIES.filter((k) => k.slug !== (cat && cat.slug)).map((k) => `<a class="chip" href="product-category.html?c=${k.slug}"><span class="chip__dot" style="background:${k.color}"></span>${MF.esc(k.name)}</a>`).join("")}</div></div>
@@ -132,18 +149,17 @@ function renderProduct(el) {
   const sectors = SECTORS.filter((s) => p.sectors.includes(s.slug));
   setTitle(p.name);
 
-  // Real products carry TDS content; placeholders get clearly-marked filler in the same shape.
+  // Real products carry TDS content; example products get general copy in the same shape.
   const D = real ? p : {
-    lead: `${p.tagline}. Placeholder — one-line benefit statement that leads with the result.`,
-    description: "Placeholder — two or three sentences describing what this product does and the problem it solves. Lead with the benefit, then the detail: chemistry, the substrates it bonds to and any approvals or standards it meets.",
-    uses: ["Placeholder application one", "Placeholder application two", "Placeholder application three", "Placeholder application four", "Placeholder application five", "Placeholder application six"],
-    howto: [["Surface preparation", "Placeholder — surfaces must be clean, dry and free of dust, oil and loose material. Mask joint edges for a clean finish."],
-            ["Method", "Placeholder — cut the nozzle to suit the joint width and apply a continuous bead, pushing into the joint."],
-            ["Clean up", "Placeholder — tool within XX minutes for a smooth finish. Remove masking tape and clean tools with MightyFix Trade Wipes."]],
-    specs: [["Chemistry", "—", p.group], ["Skin time", "Minutes", "XX"], ["Full cure", "Hours", "XX"], ["Service temperature", "°C", "-XX to XX"], ["Shelf life", "Months", "XX"]],
-    specsNote: "Placeholder values — replace with figures from the technical data sheet.",
-    faqs: ["Can I paint over it?", "Does it need a primer on concrete?", "How long before it's waterproof?", "Where shouldn't I use it?"]
-      .map((q) => [q, "Placeholder answer — keep it short, specific and confident. Link to the data sheet for full detail."]),
+    lead: `${p.tagline}. ${p.bullets[0]}.`,
+    description: `${p.name} is a ${p.tagline.toLowerCase()} in the MightyFix ${cat.name.toLowerCase()} range. ${GROUP_INFO[p.group] || ""} Full product details and technical data will be published here.`,
+    uses: apps.map((a) => a.name),
+    howto: [["Surface preparation", "Surfaces must be clean, dry and sound — free of dust, oil and loose material."],
+            ["Application", "Follow the directions on the pack for the job and the conditions on site."],
+            ["Clean up", "Clean tools and remove excess product before it cures."]],
+    specs: [["Type", "—", p.tagline], ["Chemistry", "—", p.group], ["Pack", "—", p.size]],
+    specsNote: "Full technical data sheet coming soon — ask our team for details.",
+    faqs: [],
     packaging: p.size,
   };
   const variant = [p.size.split("/")[0].trim(), p.colour].filter(Boolean).join(" · ");
@@ -151,7 +167,7 @@ function renderProduct(el) {
   const slides = (apps.length ? apps : [{ name: cat.name, photo: cat.photo }]).slice(0, 4);
   const sectorIcon = { construction: "building", manufacturing: "factory", "home-diy": "home" };
   const hasHowto = !!(D.howto && D.howto.length);
-  const navItems = [["overview", "Overview"], ["applications", "Applications"], hasHowto && ["how-to-use", "How to use"], ["technical-data", "Technical data"], ["downloads", "Downloads"], ["faqs", "FAQs"], ["related", "Related products"]].filter(Boolean);
+  const navItems = [["overview", "Overview"], ["applications", "Applications"], hasHowto && ["how-to-use", "How to use"], ["technical-data", "Technical data"], ["downloads", "Downloads"], D.faqs.length && ["faqs", "FAQs"], ["related", "Related products"]].filter(Boolean);
   const title = (id, text) => `<h2 class="prod-sec__title" id="${id}-title">${MF.esc(text)}</h2>`;
   const dots = (items, cls = "") => `<ul class="prod-dots ${cls}">${items.map((t) => `<li>${MF.esc(t)}</li>`).join("")}</ul>`;
   const related = PRODUCTS.filter((x) => x.cat === p.cat && x.slug !== p.slug).concat(PRODUCTS.filter((x) => x.cat !== p.cat && x.sectors.some((s) => p.sectors.includes(s)))).slice(0, 3);
@@ -202,18 +218,18 @@ function renderProduct(el) {
           ${title("applications", "Applications")}
           ${dots(D.uses, "prod-dots--2")}
           ${p.tds ? `<p class="prod-see-all">Key features are listed in our <a href="${p.tds.file}" target="_blank" rel="noopener">Technical Data Sheet</a>.</p>` : ""}
-          ${real ? `<div class="prod-sec__sub"><h3 class="h4" style="margin:30px 0 20px">Product features</h3>
+          ${real ? `<div class="prod-sec__sub"><h3 class="h4" style="margin:32px 0 20px">Product features</h3>
             <div class="prod-steps">${p.features.map(([t, d]) => `<p class="prod-step"><b>${MF.esc(t)}</b>${MF.esc(d)}</p>`).join("")}</div></div>` : ""}
           <div class="prod-slider" data-prod-slider>
             <div class="prod-slider__frame">
-              <div class="prod-slider__track">${slides.map((a, i) => `<img src="${IMG(PHOTOS[a.photo], 1400)}" alt="${MF.esc(a.name)} — placeholder photo"${i ? ' loading="lazy"' : ""}>`).join("")}</div>
+              <div class="prod-slider__track">${slides.map((a, i) => `<img src="${IMG(PHOTOS[a.photo], 1400)}" alt="${MF.esc(a.name)}"${i ? ' loading="lazy"' : ""}>`).join("")}</div>
               ${slides.length > 1 ? `<div class="prod-slider__nav">
                 <button type="button" data-dir="-1" aria-label="Previous photo">${MF.ic("arrow-left")}</button>
                 <button type="button" data-dir="1" aria-label="Next photo">${MF.ic("arrow-right")}</button></div>` : ""}
             </div>
             <div class="prod-slider__caption" aria-live="polite">
               <p class="prod-slider__count"><b>01</b> / ${String(slides.length).padStart(2, "0")}</p>
-              <p class="prod-slider__text">${MF.esc(slides[0].name)} — placeholder photo; replace with ${MF.esc(p.name)} application shots.</p>
+              <p class="prod-slider__text">${MF.esc(slides[0].name)}</p>
             </div>
           </div>
         </section>
@@ -248,10 +264,10 @@ function renderProduct(el) {
           ${p.tds ? `<p class="prod-specs-note">${MF.esc(p.tds.code)} · ${MF.esc(p.tds.version)} · issued ${MF.esc(p.tds.issued)}. Safety Data Sheet available on request.</p>` : ""}
         </section>
 
-        <section class="prod-sec" id="faqs" aria-labelledby="faqs-title" style="padding-bottom:0">
+        ${D.faqs.length ? `        <section class="prod-sec" id="faqs" aria-labelledby="faqs-title" style="padding-bottom:0">
           ${title("faqs", "FAQs")}
           <div class="prod-faq">${D.faqs.map(([q, a]) => `<details><summary>${MF.esc(q)}${MF.ic("chevron-down")}</summary><p class="answer">${MF.esc(a)}</p></details>`).join("")}</div>
-        </section>
+        </section>` : ""}
 
         <div class="prod-finder">
           <p>Find the right fix for the job</p>
@@ -277,7 +293,7 @@ function renderProduct(el) {
     i = (n + slides.length) % slides.length;
     track.style.transform = `translateX(${-i * 100}%)`;
     sl.querySelector(".prod-slider__count").innerHTML = `<b>${String(i + 1).padStart(2, "0")}</b> / ${String(slides.length).padStart(2, "0")}`;
-    sl.querySelector(".prod-slider__text").textContent = `${slides[i].name} — placeholder photo; replace with ${p.name} application shots.`;
+    sl.querySelector(".prod-slider__text").textContent = slides[i].name;
   };
   sl.querySelectorAll("[data-dir]").forEach((b) => b.addEventListener("click", () => go(i + +b.dataset.dir)));
 }
@@ -300,7 +316,7 @@ function renderApplication(el) {
         ${crumbs([["Home", "index.html"], ["Applications", "applications.html"], [parent.name, `application.html?a=${parent.slug}`], [app.name]])}
         <p class="eyebrow">${MF.esc(parent.name)}</p>
         <h1 id="ph-title" class="mt-5">${MF.esc(app.name)}</h1>
-        <p class="lead">Placeholder — one-line summary of the job and what MightyFix brings to it.</p>
+        <p class="lead">Products and guidance for ${MF.esc(app.name.toLowerCase())} in ${MF.esc(parent.name.toLowerCase())}.</p>
         <div class="page-hero__actions">${MF.btn("See recommended products", { href: "#recommended", cls: "btn--light" })}${MF.btn("Talk to an expert", { cls: "btn--white", icon: "headset", attrs: 'data-open="expert"' })}</div>
       </div>
       <div class="page-hero__media"><img src="${IMG(PHOTOS[app.photo], 1400)}" alt="" width="1400" height="900"></div>
@@ -310,14 +326,14 @@ function renderApplication(el) {
   <section class="section" aria-labelledby="ch-title">
     <div class="container split">
       <div class="prose" data-reveal><p class="eyebrow">The job</p><h2 id="ch-title" class="h2" style="margin-top:var(--s5)">Get it right the first time.</h2>
-        <p class="lead">Placeholder — describe the conditions this application faces and why product choice matters.</p>
-        <p>Placeholder — supporting paragraph with practical guidance. Write like you speak: talk like an expert on site, not a technical manual.</p></div>
+        <p class="lead">Every job puts a seal or bond under its own mix of water, temperature, movement and wear. Matching the product to those conditions is what makes it last.</p>
+        <p>Start with the recommended products below and check each one's data sheet against the job. If you're unsure, tell us the surface and conditions and we'll point you to the right one.</p></div>
       <div data-reveal style="--d:120ms"><h3 class="h4" style="color:var(--navy)">What to look for</h3>
         <dl class="spec-strip mt-5" style="grid-template-columns:repeat(2,1fr)">
-          <div><dt>${MF.ic("droplet")}Water</dt><dd style="font-size:1rem">Placeholder requirement</dd></div>
-          <div><dt>${MF.ic("thermo")}Temperature</dt><dd style="font-size:1rem">Placeholder requirement</dd></div>
-          <div><dt>${MF.ic("layers")}Movement</dt><dd style="font-size:1rem">Placeholder requirement</dd></div>
-          <div><dt>${MF.ic("shield")}Durability</dt><dd style="font-size:1rem">Placeholder requirement</dd></div>
+          <div><dt>${MF.ic("droplet")}Water</dt><dd style="font-size:1rem">Contact with water and moisture</dd></div>
+          <div><dt>${MF.ic("thermo")}Temperature</dt><dd style="font-size:1rem">Temperatures on site and in service</dd></div>
+          <div><dt>${MF.ic("layers")}Movement</dt><dd style="font-size:1rem">How much the joint or substrate moves</dd></div>
+          <div><dt>${MF.ic("shield")}Durability</dt><dd style="font-size:1rem">How long the fix has to last</dd></div>
         </dl></div>
     </div>
   </section>
@@ -416,7 +432,7 @@ function renderFinder(el) {
         return `<button type="button" class="option option--text" data-set="t" data-val="${c.slug}"><span class="option__body"><span><span class="chip__dot" style="display:inline-block;background:${c.color};margin-right:8px"></span>${MF.esc(c.name)}<small>${n} ${n === 1 ? "product" : "products"}</small></span>${MF.ic("arrow-right")}</span></button>`;
       }).join("")}
         <button type="button" class="option option--text" data-set="t" data-val="all"><span class="option__body"><span>Show me everything<small>${base.length} products</small></span>${MF.ic("arrow-right")}</span></button></div>`;
-      if (!cats.length) body = `<div class="empty"><h3>No products listed for this application yet</h3><p>Placeholder — talk to an expert and we'll recommend the right product.</p><div class="mt-5">${MF.btn("Talk to an expert", { icon: "headset", attrs: 'data-open="expert"' })}</div></div>`;
+      if (!cats.length) body = `<div class="empty"><h3>No products listed for this application yet</h3><p>Talk to our team and we'll recommend the right product.</p><div class="mt-5">${MF.btn("Talk to an expert", { icon: "headset", attrs: 'data-open="expert"' })}</div></div>`;
     } else {
       step = 3; back = { s: st.s, a: st.a };
       const res = match(st);
@@ -484,7 +500,7 @@ function renderArticle(el) {
   <section class="page-hero" aria-labelledby="ph-title">
     <div class="container page-hero__grid" style="padding-bottom:calc(var(--s8) * 2)">
       <div>${crumbs([["Home", "index.html"], ["Knowledge hub", "knowledge-hub.html"], [a.type]])}
-        <p class="acard__meta" style="color:rgba(255,255,255,.8)"><span class="type" style="color:var(--halfbaked)">${MF.esc(a.type)}</span><span>${MF.esc(a.date)}</span><span>${MF.esc(a.read)} read</span></p>
+        <p class="acard__meta" style="color:rgba(255,255,255,.8)"><span class="type" style="color:var(--halfbaked)">${MF.esc(a.type)}</span></p>
         <h1 id="ph-title" class="mt-5" style="max-width:20ch">${MF.esc(a.title)}</h1></div>
     </div>
   </section>
@@ -492,20 +508,13 @@ function renderArticle(el) {
   <section class="section">
     <div class="container article-layout">
       <aside class="article-aside" aria-label="Contents">
-        <p class="eyebrow">On this page</p>
-        <nav class="toc mt-4">${sections.map((s) => `<a href="#${slugify(s)}">${s}</a>`).join("")}</nav>
-        <div class="share" aria-label="Share">
+<div class="share" aria-label="Share">
           <a href="#" aria-label="Share on LinkedIn">${MF.ic("linkedin")}</a><a href="#" aria-label="Share on Facebook">${MF.ic("facebook")}</a>
           <button type="button" aria-label="Copy link" data-copy>${MF.ic("link")}</button></div>
       </aside>
       <article class="prose">
-        <p class="lead">Placeholder — standfirst. One or two sentences that tell the reader what they'll learn and why it's worth their time.</p>
-        ${sections.map((s, i) => `<h2 id="${slugify(s)}">${s}</h2>
-          <p>Placeholder paragraph. Be specific: cure times, temperature ranges, surfaces and sizes are more convincing than adjectives. Write like you speak — the way you'd explain it face to face on site.</p>
-          ${i === 1 ? `<ul><li>Placeholder point one</li><li>Placeholder point two</li><li>Placeholder point three</li></ul>` : ""}
-          ${i === 2 ? `<figure class="figure-ph"><div class="img"><img src="${IMG(PHOTOS.caulkWindow, 1400)}" alt="Applying sealant to a window frame" loading="lazy"></div><figcaption>Placeholder caption describing the image.</figcaption></figure>` : ""}
-          ${i === 3 ? `<div class="callout"><strong>Pro tip:</strong> Placeholder — a short, practical tip from the technical team.</div>` : ""}
-          ${i === 4 ? `<blockquote>“Placeholder pull-quote from a MightyFix technical expert.”</blockquote>` : ""}`).join("")}
+        <p class="lead">${MF.esc(a.summary)}</p>
+        <div class="callout"><strong>Full article coming soon.</strong> In the meantime, our team can answer questions on this topic — <a href="#" data-open="expert">talk to an expert</a>.</div>
       </article>
       <aside class="article-aside" aria-label="Products mentioned">
         <p class="eyebrow">Products mentioned</p>
@@ -532,42 +541,28 @@ function renderCaseStudy(el) {
     <div class="page-hero__bg"><img src="${IMG(PHOTOS[c.photo], 2000)}" alt="" width="2000" height="1100"></div>
     <div class="container page-hero__grid" style="width:100%">
       <div>${crumbs([["Home", "index.html"], ["Case studies", "case-studies.html"], [c.title]])}
-        <p class="eyebrow">Case study · ${MF.esc(sector.name)}</p>
+        <p class="eyebrow">Example project · ${MF.esc(sector.name)}</p>
         <h1 id="ph-title" class="mt-5" style="max-width:18ch">${MF.esc(c.title)}</h1></div>
       <dl class="facts">
-        <div><dt>Client</dt><dd>${MF.esc(c.client)}</dd></div>
-        <div><dt>Location</dt><dd>${MF.esc(c.location)}</dd></div>
         <div><dt>Sector</dt><dd>${MF.esc(sector.name)}</dd></div>
-        <div><dt>Completed</dt><dd>[Month Year]</dd></div>
+        <div><dt>Application</dt><dd>${MF.esc(c.application)}</dd></div>
+        <div><dt>Products</dt><dd>${c.products.length}</dd></div>
       </dl>
     </div>
   </section>
   <section class="section"><div class="container split">
-    <div data-reveal><p class="eyebrow">The challenge</p><h2 class="h2 mt-5">Placeholder headline for the problem.</h2></div>
-    <div class="prose" data-reveal style="--d:120ms"><p class="lead">Placeholder — what the client needed, the conditions on site and why it was difficult.</p><p>Placeholder — supporting detail: deadlines, substrates, weather, standards to meet.</p></div>
+    <div data-reveal><p class="eyebrow">The job</p><h2 class="h2 mt-5">What it has to stand up to.</h2></div>
+    <div class="prose" data-reveal style="--d:120ms"><p class="lead">${MF.esc(c.job)}</p></div>
   </div></section>
   <section class="section section--paper"><div class="container split">
-    <div data-reveal><p class="eyebrow">The solution</p><h2 class="h2 mt-5">Placeholder headline for the fix.</h2></div>
-    <div class="prose" data-reveal style="--d:120ms"><p class="lead">Placeholder — which MightyFix products were specified and how our technical team supported the job.</p>
-      <ul><li>Placeholder step or detail one</li><li>Placeholder step or detail two</li><li>Placeholder step or detail three</li></ul></div>
-  </div></section>
-  <section class="section"><div class="container">
-    <div class="gallery">${["glassRoof", "caulkWindow", "tools"].map((ph) => `<figure data-reveal><img src="${IMG(PHOTOS[ph], 1400)}" alt="Project photo (placeholder)" loading="lazy"></figure>`).join("")}</div>
-  </div></section>
-  <section class="section section--navy on-dark"><div class="container">
-    <p class="eyebrow">The result</p>
-    <div class="stat-row mt-7">
-      <div class="stat" data-reveal><strong>XX%</strong><span>Placeholder result metric</span></div>
-      <div class="stat" data-reveal><strong>XXX</strong><span>Placeholder result metric</span></div>
-      <div class="stat" data-reveal><strong>0</strong><span>Placeholder — callbacks after completion</span></div>
-    </div>
-    <figure class="quote mt-7" data-reveal><blockquote>“Placeholder client quote about the result and working with MightyFix.”</blockquote><figcaption>[Name], [Role], ${MF.esc(c.client)}</figcaption></figure>
+    <div data-reveal><p class="eyebrow">The approach</p><h2 class="h2 mt-5">How to get it right.</h2></div>
+    <div class="prose" data-reveal style="--d:120ms"><ul>${c.approach.map((t) => `<li>${MF.esc(t)}</li>`).join("")}</ul></div>
   </div></section>
   <section class="section section--paper" aria-labelledby="used-title"><div class="container">
-    <div class="section-head"><div><p class="eyebrow">Products used</p><h2 id="used-title" class="mt-5">The products behind the result.</h2></div></div>
+    <div class="section-head"><div><p class="eyebrow">Products used</p><h2 id="used-title" class="mt-5">Products for the job.</h2></div></div>
     <div class="products" data-products data-slugs="${c.products.join(",")}"></div></div></section>
   <section class="section" aria-labelledby="more-title"><div class="container">
-    <div class="section-head"><div><p class="eyebrow">More case studies</p><h2 id="more-title" class="mt-5">Proven on the job.</h2></div>${arrowLink("All case studies", "case-studies.html")}</div>
+    <div class="section-head"><div><p class="eyebrow">More examples</p><h2 id="more-title" class="mt-5">Other jobs we cover.</h2></div>${arrowLink("All case studies", "case-studies.html")}</div>
     <div class="grid grid--3" data-cases="3" data-exclude="${c.id}"></div></div></section>`;
 }
 

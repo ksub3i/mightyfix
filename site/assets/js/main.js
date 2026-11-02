@@ -65,7 +65,7 @@ const btn = (label, { href, cls = "", icon = "arrow-right", attrs = "" } = {}) =
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const param = (k) => new URLSearchParams(location.search).get(k);
 
-/* ---------- Placeholder packaging illustrations ---------- */
+/* ---------- Drawn pack illustrations (used until a product has a real pack shot) ---------- */
 function packLabel(name) {
   const words = name.replace(/^(MightyFix|MightyBond|MightySeal|MightyGrip|MightyFoam|MightyTape)\s*/i, "").toUpperCase().split(" ");
   if (words.length <= 2) return words;
@@ -78,7 +78,7 @@ function packSVG(product, extraClass = "") {
   const cat = byCat(product.cat);
   const color = cat ? cat.color : "#88C0D1";
   const label = packLabel(product.name);
-  const aria = `role="img" aria-label="${esc(product.name)} pack — placeholder illustration"`;
+  const aria = `role="img" aria-label="${esc(product.name)} pack illustration"`;
   const lines = (x, y, size, fill = "#fff") =>
     label.map((t, i) => `<text x="${x}" y="${y + i * (size + 2)}" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-weight="800" font-size="${t.length > 9 ? size * 0.72 : size}" letter-spacing="-0.5" fill="${fill}">${esc(t)}</text>`).join("");
   const pack = cat ? cat.pack : "cartridge";
@@ -151,7 +151,7 @@ function articleCard(a, { boxed = false } = {}) {
   return `<article class="acard ${boxed ? "acard--boxed" : ""}" data-reveal>
     <div class="acard__media"><img src="${IMG(PHOTOS[a.photo], 800)}" alt="" loading="lazy" width="800" height="500"></div>
     <div class="acard__body">
-      <p class="acard__meta"><span class="type">${esc(a.type)}</span><span>${esc(a.date)}</span><span>${esc(a.read)} read</span></p>
+      <p class="acard__meta"><span class="type">${esc(a.type)}</span></p>
       <h3 class="acard__title"><a href="article.html?id=${a.id}">${esc(a.title)}</a></h3>
     </div>
   </article>`;
@@ -159,7 +159,7 @@ function articleCard(a, { boxed = false } = {}) {
 function videoCard(v) {
   return `<article class="acard" data-reveal>
     <div class="acard__media"><img src="${IMG(PHOTOS[v.photo], 800)}" alt="" loading="lazy" width="800" height="500">
-      <span class="acard__play">${ic("play")}</span><span class="acard__duration">${esc(v.duration)}</span></div>
+      <span class="acard__play">${ic("play")}</span></div>
     <div class="acard__body">
       <p class="acard__meta"><span class="type">MightyFix shorts</span></p>
       <h3 class="acard__title"><a href="#" data-open="video" data-video-title="${esc(v.title)}">${esc(v.title)}</a></h3>
@@ -193,7 +193,7 @@ function renderHooks(root = document) {
     if (d.limit) list = list.slice(0, +d.limit);
     el.innerHTML = list.length
       ? list.map(productCard).join("")
-      : `<div class="empty"><h3>No products listed here yet</h3><p>Placeholder — products for this group will appear here.</p></div>`;
+      : `<div class="empty"><h3>No products listed here yet</h3><p>Products for this group are on their way. Talk to our team in the meantime.</p></div>`;
   });
   root.querySelectorAll("[data-category-tiles]").forEach((el) => {
     el.innerHTML = CATEGORIES.map((c) => tile({ href: `product-category.html?c=${c.slug}`, title: c.name, photo: c.photo, band: c.color })).join("");
@@ -310,7 +310,7 @@ function ctaBandHTML() {
       <div data-reveal>
         <p class="eyebrow">Talk to an expert</p>
         <h2 id="cta-band-title" class="mt-5">Fix it once, fix it right.</h2>
-        <p class="lead mt-5 muted">Placeholder — not sure which product fits the job? Our technical team will point you to the right one, usually within 24 hours.</p>
+        <p class="lead mt-5 muted">Not sure which product fits the job? Our team will point you to the right one.</p>
       </div>
       <div class="cta-band__actions" data-reveal style="--d:120ms">
         ${btn("Talk to an expert", { cls: "", icon: "headset", attrs: 'data-open="expert"' })}
@@ -384,7 +384,7 @@ function modalsHTML() {
         <label class="choice"><input type="radio" name="ex-method" value="phone"><span>Phone</span></label></div></fieldset>
       ${field("ex-msg", "How can we help?", { req: false, textarea: true })}
       <button type="submit" class="btn btn--block"><span class="btn__tile">${ic("arrow-right")}</span>Send message</button>
-    </form>${successHTML("Thanks — we'll be in touch.", "Placeholder — a member of our technical team will reply within 24 hours. Need us sooner? Call +00 000 000 000.")}`;
+    </form>${successHTML("Thanks — we'll be in touch.", "A member of our team will reply as soon as possible.")}`;
 
   const news = `<form class="form" novalidate data-form>
       <div class="form-summary" role="alert" tabindex="-1"><strong>Please fix the following:</strong><ul></ul></div>
@@ -396,14 +396,14 @@ function modalsHTML() {
       <label class="check"><input type="checkbox" required id="nl-consent" aria-describedby="nl-consent-err"><span>I agree to receive emails from MightyFix. Unsubscribe any time. <span class="req" aria-hidden="true">*</span></span></label>
       <p class="field__error" id="nl-consent-err" style="margin-top:-8px">${ic("alert")}<span></span></p>
       <button type="submit" class="btn btn--block"><span class="btn__tile">${ic("arrow-right")}</span>Subscribe</button>
-    </form>${successHTML("You're on the list.", "Placeholder — look out for technical tips, new products and case studies in your inbox.")}`;
+    </form>${successHTML("You're on the list.", "Look out for technical tips, new products and case studies in your inbox.")}`;
 
   const dl = `<form class="form" novalidate data-form>
       <div class="form-summary" role="alert" tabindex="-1"><strong>Please fix the following:</strong><ul></ul></div>
       <div class="form__row form__row--2">${field("dl-name", "Full name", { auto: "name" })}${field("dl-email", "Email", { type: "email", auto: "email" })}</div>
       <label class="check"><input type="checkbox" name="dl-news"><span>Also send me the MightyFix newsletter</span></label>
       <button type="submit" class="btn btn--block"><span class="btn__tile">${ic("download")}</span>Download</button>
-    </form>${successHTML("Your download is ready.", "Placeholder — in the live site the PDF starts downloading here and a copy is emailed to you.")}`;
+    </form>${successHTML("Thanks — we'll send it over.", "We'll email the data sheet to the address you gave us.")}`;
 
   return modal("expert", "Talk to an expert", "Tell us about the job — we'll recommend the right product.", expert)
     + modal("newsletter", "Sign up to our newsletter", "Technical insights, new products and case studies. No spam.", news)
@@ -411,7 +411,7 @@ function modalsHTML() {
     + `<dialog class="modal modal--video" id="modal-video" aria-labelledby="modal-video-title">
         <div class="modal__head" style="background:#000;color:#fff"><div><h2 id="modal-video-title">Brand film</h2></div>
         <button class="modal__close" type="button" aria-label="Close" data-close-modal>${ic("close")}</button></div>
-        <div class="video-placeholder"><div><p>Video placeholder</p><p class="lead" style="color:#fff;margin-top:8px">Embed your YouTube / Vimeo video here.</p></div></div>
+        <div class="video-placeholder"><div><p>Coming soon</p><p class="lead" style="color:#fff;margin-top:8px">This video is in production.</p></div></div>
       </dialog>`;
 }
 
@@ -597,6 +597,9 @@ function initCarousels(root = document) {
 }
 
 function initReveal(root = document) {
+  // One entrance per page: only the opening section fades in. Everything else is simply there.
+  const opener = document.querySelector("#page > section, #main > section");
+  root.querySelectorAll("[data-reveal]").forEach((el) => { if (!opener || !opener.contains(el)) el.removeAttribute("data-reveal"); });
   const els = root.querySelectorAll("[data-reveal]:not(.is-in)");
   if (!("IntersectionObserver" in window)) { els.forEach((e) => e.classList.add("is-in")); return; }
   const io = new IntersectionObserver((entries) => entries.forEach((en) => {

@@ -1,6 +1,6 @@
 /*
-  MightyFix — placeholder site data.
-  Everything here is placeholder content. Swap names, copy, specs and images
+  MightyFix — site data.
+  Products marked real: true come from MightyFix data sheets or listings; the rest are examples. Swap names, copy, specs and images
   for real product data (or map these shapes onto a CMS) when ready.
 */
 
@@ -71,7 +71,7 @@ const CATEGORIES = [
     groups: ["Primers", "Cleaners & wipes"] },
 ];
 
-/* Product ranges (brand families). Placeholder names. */
+/* Product ranges (brand families). MightySeal is on real packs; the others are working names. */
 const RANGES = [
   { slug: "mightybond", name: "MightyBond", note: "Structural & construction adhesives" },
   { slug: "mightyseal", name: "MightySeal", note: "Silicone, hybrid & acrylic sealants" },
@@ -82,7 +82,7 @@ const RANGES = [
 
 /* Products.
    Entries with `real: true` come from an official MightyFix TDS and carry full detail.
-   All other entries are placeholders — their specs use XX on purpose. */
+   All other entries are example products with general descriptions and no technical figures. */
 const PRODUCTS = [
   /* Source: MightyFix_Liquid_Nails_TDS.pdf — TDS-MF-LN-300, Version 1.0, issued 02-Sep-2026 */
   { slug: "liquid-nails", name: "MightyFix Liquid Nails", cat: "adhesives", range: null, group: "Solvent-based",
@@ -241,7 +241,7 @@ const PRODUCTS = [
 
   { slug: "mightyseal-wet-area", name: "MightySeal Wet Area", cat: "sealants", range: "mightyseal", group: "Silicone",
     tagline: "Anti-mould sanitary silicone", size: "300ml cartridge",
-    bullets: ["Waterproof in one hour", "Mould-resistant for XX years", "Stays flexible and white"],
+    bullets: ["Waterproof seal for showers and baths", "Mould resistant", "Stays flexible and white"],
     sectors: ["construction"], apps: ["joint-sealants", "plumbing-electrical", "wet-areas"] },
   { slug: "mightyseal-ms40", name: "MightySeal MS40", cat: "sealants", range: "mightyseal", group: "Hybrid MS polymer",
     tagline: "Building & industrial hybrid sealant", size: "290ml cartridge / 600ml foilpack",
@@ -249,7 +249,7 @@ const PRODUCTS = [
     sectors: ["construction", "manufacturing"], apps: ["joint-sealants", "roofing", "commercial-vehicles", "marine", "windows-doors"] },
   { slug: "mightyseal-facade", name: "MightySeal Facade", cat: "sealants", range: "mightyseal", group: "Silicone",
     tagline: "Neutral-cure facade silicone", size: "600ml foilpack",
-    bullets: ["Movement capability ±XX%", "Non-staining on stone and concrete", "Weatherproof for decades"],
+    bullets: ["Moves with the facade", "Non-staining on stone and concrete", "Weatherproof"],
     sectors: ["construction"], apps: ["joint-sealants", "roofing"] },
   { slug: "mightyseal-roof", name: "MightySeal Roof & Gutter", cat: "sealants", range: "mightyseal", group: "Hybrid MS polymer",
     tagline: "All-weather roof sealant", size: "300ml cartridge",
@@ -257,11 +257,11 @@ const PRODUCTS = [
     sectors: ["construction"], apps: ["roofing", "plumbing-electrical"] },
   { slug: "mightyseal-fire", name: "MightySeal Fire", cat: "sealants", range: "mightypro", group: "Fire-rated",
     tagline: "Fire-rated movement sealant", size: "600ml foilpack",
-    bullets: ["Up to XX-hour fire rating", "For tilt-panel and precast joints", "Silicone- and solvent-free"],
+    bullets: ["Fire-rated", "For tilt-panel and precast joints", "Silicone- and solvent-free"],
     sectors: ["construction"], apps: ["joint-sealants", "hvac"] },
   { slug: "mightyseal-acrylic", name: "MightySeal Paintable", cat: "sealants", range: "mightyseal", group: "Acrylic",
     tagline: "Paintable acrylic sealant", size: "300ml cartridge",
-    bullets: ["Paint over in XX minutes", "Low odour for interiors", "Water clean-up"],
+    bullets: ["Paintable", "Low odour for interiors", "Water clean-up"],
     sectors: ["construction"], apps: ["painting-plastering", "acoustics", "windows-doors"] },
   { slug: "mightyseal-marine", name: "MightySeal Marine", cat: "sealants", range: "mightypro", group: "Hybrid MS polymer",
     tagline: "Above- and below-waterline sealant", size: "290ml cartridge",
@@ -270,7 +270,7 @@ const PRODUCTS = [
 
   { slug: "mightyfix-gap-filler", name: "MightyFix Gap Filler", cat: "fillers", range: "mightygrip", group: "Gap fillers",
     tagline: "Fast-dry interior gap filler", size: "450g cartridge",
-    bullets: ["Sands smooth, no shrink-back", "Paint in XX minutes", "Fills gaps up to XXmm"],
+    bullets: ["Sands smooth, no shrink-back", "Paintable", "Fills interior gaps and cracks"],
     sectors: ["construction"], apps: ["painting-plastering", "windows-doors"] },
   { slug: "mightyfix-crack-repair", name: "MightyFix Crack Repair", cat: "fillers", range: "mightygrip", group: "Crack repair",
     tagline: "Flexible crack repair compound", size: "300ml cartridge",
@@ -325,16 +325,16 @@ const PRODUCTS = [
 
   { slug: "mightyfoam-gun", name: "MightyFoam Gun Grade", cat: "foams", range: "mightyfoam", group: "Gun-grade foam",
     tagline: "Low-expansion gun foam", size: "750ml can",
-    bullets: ["Low pressure — won't bow frames", "Thermal and acoustic insulation", "Trim in XX minutes"],
+    bullets: ["Low pressure — won't bow frames", "Thermal and acoustic insulation", "Trims cleanly once cured"],
     sectors: ["construction"], apps: ["construction-adhesives", "acoustics", "hvac", "windows-doors"] },
   { slug: "mightyfoam-fire", name: "MightyFoam Fire", cat: "foams", range: "mightyfoam", group: "Fire-rated foam",
     tagline: "Fire-rated expanding foam", size: "750ml can",
-    bullets: ["Up to XX-hour fire rating", "Seals service penetrations", "Gun-applied for precision"],
+    bullets: ["Fire-rated", "Seals service penetrations", "Gun-applied for precision"],
     sectors: ["construction"], apps: ["plumbing-electrical", "hvac"] },
 
   { slug: "mightytape-mount", name: "MightyTape Mount", cat: "tapes", range: "mightygrip", group: "Mounting tapes",
     tagline: "Double-sided mounting tape", size: "19mm × 5m roll",
-    bullets: ["Holds up to XXkg", "Indoor and outdoor", "Zero cure time"],
+    bullets: ["High holding power", "Indoor and outdoor", "Zero cure time"],
     sectors: ["construction", "manufacturing"], apps: ["panel-bonding", "caravan-motorhome", "joinery"] },
   /* Source: pack artwork (sizes, temperature range, pack claims). Uses, surfaces, steps and limitations are
      written for MightyFix based on a comparable butyl tape (Bostik Dit-Sit) — confirm with the supplier's TDS.
@@ -429,47 +429,64 @@ const SECTORS = [
 ];
 
 const ARTICLES = [
-  { id: "silicone-vs-hybrid", type: "Technical insight", date: "12 Sep 2026", read: "5 min", photo: "caulkWindow",
-    title: "Silicone or hybrid? Choosing the right sealant for the joint" },
-  { id: "surface-prep", type: "Technical insight", date: "28 Aug 2026", read: "4 min", photo: "tile",
-    title: "Surface prep: the five minutes that make the bond last" },
-  { id: "cure-times", type: "Understanding adhesives", date: "9 Aug 2026", read: "6 min", photo: "labBench",
-    title: "Cure time vs. skin time — what the numbers on the label mean" },
-  { id: "wet-weather", type: "Product feature", date: "21 Jul 2026", read: "3 min", photo: "roofTiles",
-    title: "Sealing in the rain: when wet-weather products earn their keep" },
-  { id: "inside-the-lab", type: "Research & development", date: "2 Jul 2026", read: "7 min", photo: "lab",
-    title: "Inside the lab: how we stress-test every formula" },
-  { id: "foam-mistakes", type: "Technical insight", date: "14 Jun 2026", read: "4 min", photo: "wallPipes",
-    title: "Three expanding-foam mistakes (and how to avoid them)" },
+  { id: "silicone-vs-hybrid", type: "Technical insight", photo: "caulkWindow",
+    title: "Silicone or hybrid? Choosing the right sealant for the joint",
+    summary: "Silicone stays flexible and shrugs off water and UV, but most can't be painted. Hybrid polymers bond and seal in one and take paint. The joint decides which one you need." },
+  { id: "surface-prep", type: "Technical insight", photo: "tile",
+    title: "Surface prep: the five minutes that make the bond last",
+    summary: "Most failed seals and bonds come down to the surface, not the product. Clean, dry and sound is the rule — here's what that means in practice." },
+  { id: "cure-times", type: "Understanding adhesives", photo: "labBench",
+    title: "Cure time vs. skin time — what the numbers on the label mean",
+    summary: "Skin time, tack-free time and full cure measure different things. Knowing which is which tells you when to tool, when to paint and when the joint can take load." },
+  { id: "wet-weather", type: "Product feature", photo: "roofTiles",
+    title: "Sealing in the rain: when wet-weather products earn their keep",
+    summary: "Most sealants need a dry surface. Some are made to bond when it's damp — here's when that matters and what to look for on the data sheet." },
+  { id: "measuring-performance", type: "Research & development", photo: "lab",
+    title: "How sealant and adhesive performance is measured",
+    summary: "Hardness, movement capability, tensile strength and elongation: what the figures on a technical data sheet mean and how they're tested." },
+  { id: "foam-mistakes", type: "Technical insight", photo: "wallPipes",
+    title: "Three expanding-foam mistakes (and how to avoid them)",
+    summary: "Overfilling, skipping the water mist and trimming too early are the usual culprits. A few habits make foam work first time." },
 ];
 
 const VIDEOS = [
-  { id: "v1", title: "How to run a clean silicone bead", duration: "1:42", photo: "subwayTile" },
-  { id: "v2", title: "Loading a foilpack in 30 seconds", duration: "0:58", photo: "tools" },
-  { id: "v3", title: "Fixing skirting without nails", duration: "2:15", photo: "carpenter" },
-  { id: "v4", title: "Sealing a roof penetration", duration: "3:04", photo: "metalRoof" },
+  { id: "v1", title: "How to run a clean silicone bead", photo: "subwayTile" },
+  { id: "v2", title: "Loading a foilpack into a sausage gun", photo: "tools" },
+  { id: "v3", title: "Fixing skirting without nails", photo: "carpenter" },
+  { id: "v4", title: "Sealing a roof penetration", photo: "metalRoof" },
 ];
 
+/* Example projects: typical jobs and how the range is used on them. No clients, figures or results are claimed —
+   replace with real case studies (client, location, results, quote) when they're available. */
 const CASE_STUDIES = [
-  { id: "harbour-tower", sector: "construction", title: "[Project name]: sealing a 30-storey facade", photo: "cranesDusk",
-    client: "[Client name]", location: "[City]", products: ["mightyseal-facade", "mightyfix-primer"] },
-  { id: "fleet-refit", sector: "manufacturing", title: "[Client] fleet refit: bonding 200 truck bodies", photo: "truck",
-    client: "[Client name]", location: "[City]", products: ["mightybond-pu40", "mightyseal-butyl-sealing-tape"] },
-  { id: "marina-rebuild", sector: "manufacturing", title: "[Marina name]: below-waterline repairs in one tide", photo: "marina",
-    client: "[Client name]", location: "[City]", products: ["mightyseal-marine", "mightyfix-primer"] },
-  { id: "school-fitout", sector: "construction", title: "[School name]: fire-rated joints across 40 classrooms", photo: "glassCorner",
-    client: "[Client name]", location: "[City]", products: ["mightyseal-fire", "mightyfoam-fire"] },
-  { id: "hotel-bathrooms", sector: "construction", title: "[Hotel name]: 320 wet-area refits, zero callbacks", photo: "bathroom",
-    client: "[Client name]", location: "[City]", products: ["mightyseal-wet-area", "mightyfix-wipes"] },
-  { id: "joinery-line", sector: "manufacturing", title: "[Workshop name]: cutting clamp time on a joinery line", photo: "joinery",
-    client: "[Client name]", location: "[City]", products: ["liquid-nails", "mightytape-mount"] },
+  { id: "harbour-tower", sector: "construction", title: "Sealing the movement joints on a high-rise facade", photo: "cranesDusk",
+    application: "Joint sealants", products: ["mightyseal-facade", "mightyfix-primer"],
+    job: "Facade joints on a tall building move with wind, heat and settlement, sit in full sun and rain, and are hard to reach once the scaffold comes down.",
+    approach: ["Prime porous stone and concrete edges so the sealant bonds fully", "Use a backing rod to set the joint depth before sealing", "Seal with a neutral-cure facade silicone that won't stain the stone", "Tool each joint for a clean, weather-shedding profile"] },
+  { id: "fleet-refit", sector: "manufacturing", title: "Bonding and sealing truck bodies", photo: "truck",
+    application: "Commercial vehicles", products: ["mightybond-pu40", "mightyseal-butyl-sealing-tape"],
+    job: "Truck bodies take constant vibration, flex and weather, and every joint has to stay sealed against water and road spray.",
+    approach: ["Clean and degrease metal panels before bonding", "Bond panels with a structural polyurethane adhesive", "Seal overlaps and fixings with butyl sealing tape", "Allow full cure before the vehicle goes back into service"] },
+  { id: "marina-rebuild", sector: "manufacturing", title: "Repairs above and below the waterline", photo: "marina",
+    application: "Marine", products: ["mightyseal-marine", "mightyfix-primer"],
+    job: "Boat repairs mean salt water, UV and constant movement — and often a short window to get the work done.",
+    approach: ["Remove old sealant and clean back to sound material", "Prime where the substrate calls for it", "Use a marine-grade sealant suited to wet conditions", "Fair and finish once cured"] },
+  { id: "school-fitout", sector: "construction", title: "Fire-rated joints in a school fit-out", photo: "glassCorner",
+    application: "Joint sealants", products: ["mightyseal-fire", "mightyfoam-fire"],
+    job: "Classrooms are separated by fire-rated walls, and every joint and service penetration in them has to keep that rating intact.",
+    approach: ["Identify every joint and penetration in the fire-rated walls", "Fill penetrations with fire-rated foam", "Seal joints with a fire-rated sealant to the specified depth", "Label and record each seal for inspection"] },
+  { id: "hotel-bathrooms", sector: "construction", title: "Refitting hotel bathrooms", photo: "bathroom",
+    application: "Bathrooms & wet areas", products: ["mightyseal-wet-area", "mightyfix-wipes"],
+    job: "Hotel bathrooms are used every day, cleaned hard and have to look spotless — a failed seal means a room out of service.",
+    approach: ["Cut out old sealant and clean back to bare surfaces", "Let the surfaces dry fully before sealing", "Seal baths, showers and basins with a mould-resistant silicone", "Clean up excess straight away with trade wipes"] },
+  { id: "joinery-line", sector: "manufacturing", title: "Speeding up assembly on a joinery line", photo: "joinery",
+    application: "Joinery & furniture", products: ["liquid-nails", "mightytape-mount"],
+    job: "On a joinery line, every minute a part spends clamped is a minute it isn't moving down the line.",
+    approach: ["Use a high-grab adhesive that holds without long clamping", "Use mounting tape where a part needs to hold instantly", "Keep surfaces clean and dust-free at the bonding station", "Let parts reach full strength before final assembly"] },
 ];
 
-const OFFICES = [
-  { name: "Head office", city: "[City, Country]", phone: "+00 000 000 000", email: "sales@mightyfix.com", address: "[Street address line]" },
-  { name: "Branch office", city: "[City]", phone: "+00 000 000 000", email: "sales@mightyfix.com", address: "[Street address line]" },
-  { name: "Distribution centre", city: "[City]", phone: "+00 000 000 000", email: "orders@mightyfix.com", address: "[Street address line]" },
-];
+/* Add real offices here ({ name, city, address, phone, email }) — the contact page lists them automatically. */
+const OFFICES = [];
 
 /* Lookups */
 const byCat = (slug) => CATEGORIES.find((c) => c.slug === slug);
