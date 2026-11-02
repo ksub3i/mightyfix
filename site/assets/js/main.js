@@ -129,6 +129,7 @@ function productCard(p) {
     <div class="pcard__media">
       <span class="pcard__band" style="background:${cat.color}"></span>
       <span class="pcard__tag">${esc(cat.name)}</span>
+      ${p.status === "coming-soon" ? `<span class="soon-badge pcard__soon">Coming soon</span>` : ""}
       ${packSVG(p)}
     </div>
     <div class="pcard__body">

@@ -164,10 +164,11 @@ function renderProduct(el) {
         <p class="prod-banner__variant">${MF.esc(variant)}</p>
       </div>
       <div class="prod-banner__copy" data-reveal style="--d:120ms">
+        ${p.status === "coming-soon" ? `<p class="soon-badge soon-badge--banner">Coming soon</p>` : ""}
         <h1 id="pdp-title">${MF.esc(p.name)}</h1>
         <p class="prod-banner__lead">${MF.esc(D.lead)}</p>
         <ul class="prod-banner__bullets">${p.bullets.map((b) => `<li>${MF.esc(b)}</li>`).join("")}</ul>
-        <button type="button" class="btn-solid" data-open="expert">Talk to an expert</button>
+        <button type="button" class="btn-solid" data-open="expert">${p.status === "coming-soon" ? "Register your interest" : "Talk to an expert"}</button>
       </div>
     </div>
   </section>
@@ -261,7 +262,7 @@ function renderProduct(el) {
           ${title("related", "Related products")}
           <div class="prod-related">${related.map((r) => `<a class="rel-card" href="product.html?p=${r.slug}">
             <span class="rel-card__thumb">${MF.packSVG(r)}<span class="rel-card__go">${MF.ic("arrow-right")}</span></span>
-            <span class="rel-card__body"><span class="rel-card__title" style="display:block">${MF.esc(r.name)}</span>
+            <span class="rel-card__body">${r.status === "coming-soon" ? `<span class="soon-badge">Coming soon</span>` : ""}<span class="rel-card__title" style="display:block">${MF.esc(r.name)}</span>
               <ul class="prod-dots">${r.bullets.map((b) => `<li>${MF.esc(b)}</li>`).join("")}</ul></span></a>`).join("")}</div>
         </section>
       </div>

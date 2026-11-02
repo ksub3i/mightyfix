@@ -563,6 +563,11 @@ dialog.modal--video { width: min(1100px, calc(100vw - 2rem)); background: #000; 
 .accordion .acc-body > * + * { margin-top: var(--s3); }
 .accordion .acc-body ol, .accordion .acc-body ul { padding-left: 1.2em; }
 
+/* "Coming soon" label for products that haven't launched yet */
+.soon-badge { display: inline-block; padding: 4px 10px; margin-bottom: 12px; background: var(--halfbaked); color: var(--navy); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em; line-height: 1.4; }
+.pcard__soon { position: absolute; top: var(--s4); right: var(--s4); z-index: 1; margin: 0; }
+.soon-badge--banner { margin: 20px 0 -8px; }
+
 /* ---------- Product detail (layout mirrors sabreadhesives.com product pages) ---------- */
 .prod-banner { background: var(--navy); color: var(--white); padding: 45px 0 75px; }
 .prod-banner__grid { display: grid; gap: var(--s6); align-items: center; }
