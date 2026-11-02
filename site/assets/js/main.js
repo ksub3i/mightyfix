@@ -237,12 +237,6 @@ function headerHTML() {
 
   return `
   <a class="skip-link" href="#main">Skip to content</a>
-  <div class="announce" id="announce" role="region" aria-label="Announcement">
-    <div class="container">
-      <p>Placeholder announcement — e.g. new product launch or holiday trading hours. <a href="product-finder.html" style="color:inherit">Learn more</a></p>
-      <button type="button" aria-label="Dismiss announcement" data-dismiss-announce>${ic("close")}</button>
-    </div>
-  </div>
   <header class="site-header" id="site-header">
     <div class="container site-header__bar">
       <a class="brand" href="index.html" aria-label="MightyFix home"><img src="assets/img/wordmark-white.png" alt="MightyFix" width="137" height="28"></a>
@@ -421,16 +415,6 @@ function modalsHTML() {
 }
 
 /* ---------- Behaviour ---------- */
-function initAnnounce() {
-  const bar = document.getElementById("announce");
-  if (!bar) return;
-  try { if (sessionStorage.getItem("mf-announce") === "hidden") bar.remove(); } catch (e) {}
-  bar.querySelector("[data-dismiss-announce]")?.addEventListener("click", () => {
-    bar.remove();
-    try { sessionStorage.setItem("mf-announce", "hidden"); } catch (e) {}
-  });
-}
-
 function initHeader() {
   const header = document.getElementById("site-header");
   const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 8);
@@ -656,7 +640,6 @@ window.MF = { ic, btn, esc, param, packSVG, productCard, tile, articleCard, case
 
   if (typeof window.renderPage === "function") window.renderPage();
   renderHooks();
-  initAnnounce();
   initHeader();
   initModals();
   initForms();
