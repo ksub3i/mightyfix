@@ -926,11 +926,12 @@ h3, .h3 { font-weight: 700; line-height: 1.4; letter-spacing: 0; }
 
 /* Home hero: fills the screen; finder panel with a 60px arrow tile and uppercase link */
 .hero { min-height: calc(100vh - var(--header-h)); min-height: calc(100dvh - var(--header-h)); }
-.hero__finder { padding: 53px 45px 60px; }
-.hero__finder h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 34px; max-width: 10em; }
-.hero__finder .btn { --btn-bg: transparent; --btn-fg: var(--halfbaked); padding: 0; min-height: 60px; gap: 20px; font-size: 0.875rem; text-transform: uppercase; }
-.hero__finder .btn .btn__tile { display: grid; width: 60px; height: 60px; background: var(--halfbaked); color: var(--navy); }
+.hero__finder { width: min(100%, 400px); padding: 32px 40px; }
+.hero__finder h2 { font-size: 1.25rem; font-weight: 700; line-height: 1.3; margin-bottom: 20px; max-width: 14em; }
+.hero__finder .btn { --btn-bg: transparent; --btn-fg: var(--halfbaked); padding: 0; min-height: 48px; gap: 16px; font-size: 0.875rem; text-transform: uppercase; }
+.hero__finder .btn .btn__tile { display: grid; width: 48px; height: 48px; background: var(--halfbaked); color: var(--navy); }
 .hero__finder .btn:hover { --btn-bg: transparent; color: var(--white); }
+@media (max-width: 639px) { .hero__finder { width: 100%; padding: 24px var(--gutter); } }
 .hero__play .icon-btn { width: 72px; height: 72px; }
 
 /* Inner page banners (navy): Sabre global banner — 100px top, 180px bottom on listing pages */
