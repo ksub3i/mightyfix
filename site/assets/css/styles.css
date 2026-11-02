@@ -884,3 +884,187 @@ table.specs tr:last-child th, table.specs tr:last-child td { border-bottom: 0; }
 .empty h3 { color: var(--navy); }
 .empty p { margin-top: var(--s3); color: var(--text-muted); }
 .mt-4 { margin-top: var(--s4); } .mt-5 { margin-top: var(--s5); } .mt-6 { margin-top: var(--s6); } .mt-7 { margin-top: var(--s7); }
+
+/* ==========================================================================
+   Sabre alignment
+   Sizes and spacing measured from sabreadhesives.com at 1440px wide
+   (container 1240px, header 120px, Poppins). Colours stay MightyFix.
+   This block comes last so it overrides the base rules above.
+   ========================================================================== */
+:root {
+  --header-h: 120px;
+  --fs-display: clamp(2.75rem, 1.4rem + 4vw, 4.5rem);   /* hero 72px */
+  --fs-h1: clamp(2.25rem, 1.5rem + 2.4vw, 3.375rem);      /* page titles 54px */
+  --fs-h2: clamp(1.75rem, 1.3rem + 1.2vw, 2.25rem);       /* section headings 36px */
+  --fs-h3: 1.25rem;                                       /* tile / card names 20px */
+  --fs-lead: 1rem;
+  --section: clamp(64px, 2.5rem + 5vw, 110px);            /* Sabre sections: 95–120px */
+}
+body { font-weight: 500; line-height: 1.5; }
+.display { font-weight: 600; line-height: 0.96; letter-spacing: -1px; }
+h1, .h1 { font-weight: 600; line-height: 1.22; letter-spacing: 0; }
+h2, .h2 { font-weight: 700; line-height: 1.2; letter-spacing: 0; }
+h3, .h3 { font-weight: 700; line-height: 1.4; letter-spacing: 0; }
+.lead { font-size: 1rem; font-weight: 500; line-height: 1.5; letter-spacing: 0; }
+.section-head { margin-bottom: 60px; }
+
+/* Header: 120px bar, 33px logo, "Product finder" as a text link with a search icon */
+.site-header__bar { height: 120px; }
+.brand img { height: 33px; }
+.nav__list { height: 120px; }
+.nav__link { padding: 0 14px; }
+.header-cta { --btn-bg: transparent; --btn-fg: var(--white); min-height: 0; padding: 0; gap: 10px; font-size: 1rem; }
+.header-cta:hover { --btn-bg: transparent; color: var(--halfbaked); }
+.header-actions .header-cta .btn__tile { display: grid; width: auto; background: none; color: var(--halfbaked); }
+.header-cta .btn__tile svg { width: 18px; height: 18px; }
+
+/* Buttons: solid 50px blocks with 16px semi-bold text, no icon tile */
+.btn { min-height: 50px; padding: 0 28px; gap: 0; font-size: 1rem; font-weight: 600; justify-content: center; }
+.btn .btn__tile { display: none; }
+.btn-solid { padding: 0 30px; }
+
+/* Home hero: fills the screen; finder panel with a 60px arrow tile and uppercase link */
+.hero { min-height: calc(100vh - var(--header-h)); min-height: calc(100dvh - var(--header-h)); }
+.hero__finder { padding: 53px 45px 60px; }
+.hero__finder h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 34px; max-width: 10em; }
+.hero__finder .btn { --btn-bg: transparent; --btn-fg: var(--halfbaked); padding: 0; min-height: 60px; gap: 20px; font-size: 0.875rem; text-transform: uppercase; }
+.hero__finder .btn .btn__tile { display: grid; width: 60px; height: 60px; background: var(--halfbaked); color: var(--navy); }
+.hero__finder .btn:hover { --btn-bg: transparent; color: var(--white); }
+.hero__play .icon-btn { width: 72px; height: 72px; }
+
+/* Inner page banners (navy): Sabre global banner — 100px top, 180px bottom on listing pages */
+.page-hero__grid { padding-block: 100px 120px; }
+.page-hero--compact .page-hero__grid { padding-block: 100px 100px; }
+.page-hero h1 { margin-bottom: 0; }
+.page-hero .lead { font-size: 0.875rem; line-height: 1.4; margin-top: 35px; }
+.page-hero__grid .crumbs { margin-bottom: 40px; }
+@media (min-width: 960px) { .page-hero--split .page-hero__text { padding-block: 100px 180px; } }
+
+/* Tiles: photo with an arrow tile in its corner, name underneath (Sabre three-col tiles) */
+.tiles { column-gap: 16px; row-gap: 48px; }
+.tile { aspect-ratio: auto; overflow: visible; background: none; color: var(--navy); }
+.tile::after { display: none; }
+.tile__media { position: relative; display: block; aspect-ratio: 300 / 186; overflow: hidden; background: var(--navy); margin-bottom: 30px; }
+.tile__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tile .tile__arrow { position: absolute; right: 0; bottom: 0; width: 50px; height: 50px; background: var(--autumn); color: var(--white); }
+.tile:hover .tile__arrow { background: var(--navy); color: var(--white); }
+.tile__title { display: block; font-size: 1.25rem; font-weight: 700; line-height: 1.4; letter-spacing: 0; }
+.tile:hover .tile__title { color: var(--autumn); }
+.on-dark .tile, .page-hero .tile { color: var(--white); }
+.on-dark .tile:hover .tile__title, .page-hero .tile:hover .tile__title { color: var(--halfbaked); }
+.on-dark .tile:hover .tile__arrow, .page-hero .tile:hover .tile__arrow { background: var(--halfbaked); color: var(--navy); }
+.tile--short .tile__media { aspect-ratio: 300 / 186; }
+
+/* Product cards: Sabre listing card — grey image square, arrow tile, bold name, dot bullets */
+.products { column-gap: 16px; row-gap: 56px; }
+.pcard { border: 0; background: none; }
+.pcard:hover { border: 0; }
+.pcard__media { aspect-ratio: 299 / 340; background: var(--paper); margin-bottom: 25px; }
+.pcard__media svg { height: 72%; }
+.pcard__media .pack-photo { height: 76%; max-width: 84%; }
+.pcard__band { height: 4px; }
+.pcard__go { position: absolute; right: 0; bottom: 0; display: grid; place-items: center; width: 50px; height: 50px; background: var(--autumn); color: var(--white); transition: background-color 0.35s ease; }
+.pcard__go svg { width: 20px; height: 20px; }
+.pcard:hover .pcard__go { background: var(--navy); }
+.pcard__body { padding: 0 12px; gap: 0; }
+.pcard__title { font-size: 1.125rem; font-weight: 700; line-height: 1.3; letter-spacing: 0; margin-bottom: 20px; }
+.pcard:hover .pcard__title a { color: var(--autumn); }
+.pcard__dots { list-style: none; margin: 0; padding: 0; }
+.pcard__dots li { position: relative; padding-left: 15px; margin-bottom: 12px; font-size: 0.875rem; font-weight: 500; line-height: 1.6; color: var(--navy); }
+.pcard__dots li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 5px; height: 5px; background: var(--autumn); }
+.pcard__soon { top: 16px; right: 16px; }
+
+/* Home: three-column intro (heading | paragraph | paragraph) */
+.intro-3 { padding: 115px 0 105px; }
+@media (min-width: 960px) {
+  .intro-3 .split { grid-template-columns: repeat(3, 1fr); gap: 0 122px; align-items: start; }
+  .intro-3 .intro__cols { display: contents; }
+  .intro-3 .intro__cols p { margin-top: 60px; }
+}
+.intro-3 .intro__cols .lead, .intro-3 .intro__cols .muted { font-size: 1rem; font-weight: 500; color: var(--navy); }
+
+/* Home: navy categories block — photo on the left, heading and category list on the right */
+.home-cats { background: var(--navy); color: var(--white); padding: 95px 0; }
+.home-cats__grid { display: grid; gap: var(--s6); align-items: center; }
+@media (min-width: 960px) { .home-cats__grid { grid-template-columns: 1fr 1fr; gap: 59px; } }
+.home-cats__media { position: relative; aspect-ratio: 620 / 490; overflow: hidden; background: var(--azure); }
+.home-cats__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.35s ease; }
+.home-cats h2 { margin-bottom: 60px; }
+.home-cats__list { list-style: none; margin: 0; padding: 0; }
+.home-cats__list li { margin-bottom: 10px; }
+.home-cats__list a { display: flex; align-items: center; justify-content: space-between; min-height: 48px; color: var(--white); text-decoration: none; font-size: 1rem; font-weight: 500; border-bottom: 1px solid var(--line-dark); transition: color 0.35s ease; }
+.home-cats__list a svg { width: 20px; height: 20px; color: var(--halfbaked); }
+.home-cats__list a:hover, .home-cats__list a:focus-visible { color: var(--halfbaked); }
+.home-cats__dot { display: inline-block; width: 8px; height: 8px; margin-right: 12px; }
+
+/* Home: slideshow on white, Sabre spacing */
+.home-slides { padding: 100px 0 140px; }
+.home-slides .slide__num { font-size: 0.875rem; font-weight: 700; color: var(--navy); margin-bottom: 25px; }
+.home-slides .slide .stack > * + * { margin-top: 30px; }
+
+/* Newsletter block (Sabre home): grey band, 48px heading */
+.newsletter-band { background: #f5f5f5; padding: 120px 0; }
+.newsletter-band h2 { font-size: clamp(2rem, 1.4rem + 1.8vw, 3rem); font-weight: 600; line-height: 1.2; letter-spacing: -1px; }
+.newsletter-band p { margin-top: 25px; max-width: 32rem; }
+.newsletter-band__grid { display: grid; gap: var(--s6); align-items: end; }
+@media (min-width: 960px) { .newsletter-band__grid { grid-template-columns: 1fr auto; } }
+
+/* Footer: Sabre — sign-off and button left, contact links right, copyright below */
+.site-footer { padding: 115px 0 40px; font-size: 1rem; }
+.footer__upper { display: grid; gap: var(--s7); }
+@media (min-width: 960px) { .footer__upper { grid-template-columns: 5fr 3fr 4fr; } .footer__connect { grid-column: 3; } }
+.footer__line { font-size: clamp(2.25rem, 1.4rem + 2.6vw, 3.625rem); font-weight: 600; line-height: 1.1; letter-spacing: -1px; margin-bottom: 60px; }
+.footer__signoff .btn-solid { margin-top: 0; }
+.footer__connect { list-style: none; margin: 0; padding: 0; }
+.footer__connect a { display: inline-flex; align-items: center; gap: 8px; color: var(--white); text-decoration: none; font-size: 1rem; font-weight: 600; line-height: 2; padding: 3px 0; }
+.footer__connect a svg { width: 24px; height: 24px; color: var(--halfbaked); }
+.footer__connect a:hover { color: var(--halfbaked); }
+.footer__lower { display: flex; flex-wrap: wrap; gap: var(--s4); justify-content: space-between; margin-top: 140px; font-weight: 500; }
+.footer__lower ul { display: flex; gap: var(--s5); list-style: none; margin: 0; padding: 0; }
+.footer__lower a { color: var(--white); text-decoration: none; }
+.footer__lower a:hover { color: var(--halfbaked); }
+
+/* Product page: Sabre's exact values (restored after the 4px rounding) */
+.prod-banner { padding: 45px 0 75px; }
+.prod-banner__copy h1 { font-size: clamp(2.25rem, 1.6rem + 2vw, 3rem); font-weight: 600; line-height: 1.1; }
+.prod-banner__bullets { margin-top: 30px; }
+.prod-banner__bullets li { padding-left: 15px; }
+.prod-crumbs { padding: 15px 0; }
+.prod-body { padding: 130px 0 180px; }
+@media (min-width: 960px) { .prod-nav__inner { margin-right: 50px; padding: 35px 0; } }
+.prod-sec { padding-bottom: 70px; }
+.prod-sec__title { gap: 11px; padding: 24px 0 50px; font-weight: 700; }
+.prod-step b, .prod-text strong, .prod-note b, .prod-slider__count b { font-weight: 700; }
+.prod-dl { text-transform: uppercase; }
+.prod-faq summary { padding: 25px 0 25px 10px; }
+.prod-faq .answer { padding: 0 10px 45px; }
+.prod-finder { margin: 105px 0 70px; padding: 53px 45px; }
+.prod-finder p { font-weight: 700; }
+.prod-finder a { text-transform: uppercase; }
+.prod-specs thead th { text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; }
+.rel-card__thumb { margin-bottom: 25px; }
+.rel-card__title { font-weight: 700; }
+
+/* Category / sector listing body: same side-menu layout as the product page */
+.cat-body { padding: 105px 0 118px; color: var(--navy); }
+.cat-group { padding-bottom: 88px; scroll-margin-top: calc(var(--header-h) + 24px); }
+.cat-group .prod-sec__title { padding: 24px 0 30px; }
+.cat-group .accordion { margin-bottom: 40px; }
+.cat-about h2 { font-size: 1.5rem; font-weight: 700; margin: 0 0 20px; }
+.cat-about { padding-top: 40px; }
+@media (min-width: 960px) { .cat-body .products { grid-template-columns: repeat(3, 1fr); } }
+
+/* Sector page: tiles sit inside the navy banner */
+.sector-banner { background: var(--navy); color: var(--white); padding: 100px 0; }
+.sector-banner h1 { font-size: clamp(2.25rem, 1.4rem + 2.6vw, 3.75rem); margin: 0 0 39px; }
+.sector-banner .crumbs { margin-bottom: 24px; color: var(--white); }
+@media (min-width: 960px) { .sector-banner .tiles { grid-template-columns: repeat(4, 1fr); } }
+
+/* Sabre alignment — fine-tuning after side-by-side measurement */
+.prod-nav a { font-size: 0.875rem; }
+.prod-crumbs { line-height: 24px; }
+.prod-sec__title { line-height: 1.8; }
+.cat-group .prod-sec__title { padding: 24px 0 30px; }
+.pcard__dots li { line-height: 1.94; }
+.sector-banner h1 { line-height: 1.1; }
+@media (min-width: 1200px) { .intro-3 .split { grid-template-columns: repeat(3, 297px); justify-content: start; } }

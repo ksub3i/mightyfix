@@ -95,44 +95,51 @@ function renderCategory(el) {
   setTitle(title);
   const lower = title.toLowerCase();
 
+  const info = (g) => GROUP_INFO[g.name] || (byCat(g.attrs.match(/data-cat="([^"]+)"/)?.[1] || "") || {}).intro || "";
+  const usedIn = allApps().filter((a) => PRODUCTS.some((p) => (cat ? p.cat === cat.slug : p.range === r.slug) && p.apps.includes(a.slug)));
+
   el.innerHTML = `
   <section class="page-hero page-hero--split" aria-labelledby="ph-title">
     <div class="container page-hero__grid">
       <div class="page-hero__text">
-        ${crumbs([["Home", "index.html"], ["Products", "products.html"], [title]])}
-        <p class="eyebrow">${crumb}</p>
-        <h1 id="ph-title" class="mt-5">${MF.esc(title)}</h1>
+        <h1 id="ph-title">${MF.esc(title)}</h1>
         <p class="lead">${MF.esc(intro)}</p>
-        <div class="page-hero__actions">${MF.btn("Talk to an expert", { cls: "btn--light", icon: "headset", attrs: 'data-open="expert"' })}</div>
+        <div class="page-hero__actions"><button type="button" class="btn-solid" data-open="expert">Talk to an expert</button></div>
       </div>
       <div class="page-hero__media"><img src="${IMG(PHOTOS[photo], 1400)}" alt="" width="1400" height="900"></div>
     </div>
     <span class="page-hero__band" style="background:${color}"></span>
   </section>
-  <nav class="subnav" aria-label="Filter ${MF.esc(lower)}"><div class="container"><span class="subnav__label">Show me</span>
-    ${groups.map((g) => `<a href="#${slugify(g.name)}">${MF.esc(g.name)} <span class="chip__count">(${g.n})</span></a>`).join("")}</div></nav>
-  ${groups.map((g, i) => `
-    <section class="section ${i % 2 ? "section--paper" : ""}" id="${slugify(g.name)}" aria-labelledby="g-${slugify(g.name)}">
-      <div class="container">
-        <div class="section-head" style="margin-bottom:var(--s6)">
-          <div data-reveal><h2 id="g-${slugify(g.name)}" class="h2">${MF.esc(g.name)}</h2></div>
-        </div>
-        <div class="accordion" style="margin-bottom:var(--s6)">
-          <details><summary>What ${/s$/.test(g.name) ? "are" : "is"} ${MF.esc(g.name.toLowerCase())}?<span class="acc-icon">${MF.ic("plus")}</span></summary>
-            <div class="acc-body"><p>${MF.esc(GROUP_INFO[g.name] || (byCat(g.attrs.match(/data-cat="([^"]+)"/)?.[1] || "") || {}).intro || "")}</p></div></details>
-        </div>
-        <div class="products" data-products ${g.attrs}></div>
+
+  <nav class="prod-crumbs" aria-label="Breadcrumb"><div class="container"><ol>
+    <li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><span aria-current="page">${MF.esc(title)}</span></li>
+  </ol></div></nav>
+
+  <section class="cat-body">
+    <div class="container prod-body__grid">
+      <aside class="prod-nav" aria-label="${MF.esc(crumb)}"><nav class="prod-nav__inner">
+        ${groups.map((g, i) => `<a href="#${slugify(g.name)}"${i === 0 ? ' class="is-active"' : ""}>${MF.esc(g.name)}</a>`).join("")}
+      </nav></aside>
+      <div class="prod-main">
+        ${groups.map((g) => `
+        <section class="cat-group" id="${slugify(g.name)}" aria-labelledby="g-${slugify(g.name)}">
+          <h2 class="prod-sec__title" id="g-${slugify(g.name)}">${MF.esc(g.name)}</h2>
+          ${info(g) ? `<div class="accordion"><details><summary>What ${/s$/.test(g.name) ? "are" : "is"} ${MF.esc(g.name.toLowerCase())}?<span class="acc-icon">${MF.ic("plus")}</span></summary>
+            <div class="acc-body"><p>${MF.esc(info(g))}</p></div></details></div>` : ""}
+          <div class="products" data-products ${g.attrs}></div>
+        </section>`).join("")}
       </div>
-    </section>`).join("")}
-  <section class="section" aria-label="About ${MF.esc(lower)}">
-    <div class="container split split--even">
-      <div class="prose" data-reveal><h2 class="h3" style="margin-top:0">Types of ${MF.esc(lower)}</h2>
-        <ul>${groups.map((g) => `<li><strong>${MF.esc(g.name)}</strong> — ${MF.esc((GROUP_INFO[g.name] || (byCat(g.attrs.match(/data-cat="([^"]+)"/)?.[1] || "") || {}).intro || "").split(". ")[0].replace(/\.$/, ""))}.</li>`).join("")}</ul></div>
-      <div class="prose" data-reveal style="--d:120ms"><h2 class="h3" style="margin-top:0">Where they're used</h2>
-        <ul>${allApps().filter((a) => PRODUCTS.some((p) => (cat ? p.cat === cat.slug : p.range === r.slug) && p.apps.includes(a.slug))).map((a) => `<li><a href="application.html?a=${a.slug}">${MF.esc(a.name)}</a></li>`).join("")}</ul></div>
     </div>
-    <div class="container mt-7"><p class="eyebrow">See also</p>
-      <div class="see-also mt-5">${CATEGORIES.filter((k) => k.slug !== (cat && cat.slug)).map((k) => `<a class="chip" href="product-category.html?c=${k.slug}"><span class="chip__dot" style="background:${k.color}"></span>${MF.esc(k.name)}</a>`).join("")}</div></div>
+    <div class="container cat-about">
+      <div class="split split--even">
+        <div class="prose"><h2>Types of ${MF.esc(lower)}</h2>
+          <ul>${groups.map((g) => `<li><strong>${MF.esc(g.name)}</strong> — ${MF.esc(info(g).split(". ")[0].replace(/\.$/, ""))}.</li>`).join("")}</ul></div>
+        <div class="prose"><h2>Applications of ${MF.esc(lower)}</h2>
+          <ul>${usedIn.map((a) => `<li><a href="application.html?a=${a.slug}">${MF.esc(a.name)}</a></li>`).join("")}</ul></div>
+      </div>
+      <div class="mt-7"><h2 class="h4">See also</h2>
+        <div class="see-also mt-5">${CATEGORIES.filter((k) => k.slug !== (cat && cat.slug)).map((k) => `<a class="chip" href="product-category.html?c=${k.slug}"><span class="chip__dot" style="background:${k.color}"></span>${MF.esc(k.name)}</a>`).join("")}</div></div>
+    </div>
   </section>`;
 }
 
@@ -359,32 +366,22 @@ function renderApplication(el) {
 function renderSector(el, s) {
   setTitle(s.name);
   el.innerHTML = `
-  <section class="page-hero page-hero--photo" aria-labelledby="ph-title">
-    <div class="page-hero__bg"><img src="${IMG(PHOTOS[s.photo], 2000)}" alt="" width="2000" height="1100"></div>
-    <div class="container page-hero__grid" style="width:100%">
-      <div>
-        ${crumbs([["Home", "index.html"], ["Applications", "applications.html"], [s.name]])}
-        <p class="eyebrow">Applications</p>
-        <h1 id="ph-title" class="mt-5">${MF.esc(s.name)}</h1>
-        <p class="lead">${MF.esc(s.intro)}</p>
-      </div>
+  <section class="sector-banner" aria-labelledby="ph-title">
+    <div class="container">
+      ${crumbs([["Home", "index.html"], ["Applications", "applications.html"], [s.name]])}
+      <h1 id="ph-title">${MF.esc(s.name)}</h1>
+      <div class="tiles" data-app-tiles="${s.slug}"></div>
     </div>
   </section>
-  <section class="section" aria-labelledby="ch-title">
+  <section class="section" aria-labelledby="pp-title">
     <div class="container">
-      <div class="section-head"><div data-reveal><h2 id="ch-title">Find your application.</h2></div></div>
-      <div class="tiles tiles--4" data-app-tiles="${s.slug}"></div>
-    </div>
-  </section>
-  <section class="section section--paper" aria-labelledby="pp-title">
-    <div class="container">
-      <div class="section-head"><div data-reveal><p class="eyebrow">Popular in ${MF.esc(s.name.toLowerCase())}</p><h2 id="pp-title" class="mt-5">Trusted by the trade.</h2></div>
+      <div class="section-head"><div><h2 id="pp-title">Popular in ${MF.esc(s.name.toLowerCase())}.</h2><p class="lead mt-5">${MF.esc(s.intro)}</p></div>
         ${arrowLink("Find the right product", `product-finder.html?s=${s.slug}`)}</div>
-      <div class="products" data-products data-sector="${s.slug === "home-diy" ? "construction" : s.slug}" data-limit="6"></div>
+      <div class="products products--4" data-products data-sector="${s.slug === "home-diy" ? "construction" : s.slug}" data-limit="4"></div>
     </div>
   </section>
-  <section class="section" aria-labelledby="cs-title"><div class="container">
-    <div class="section-head"><div data-reveal><p class="eyebrow">Case studies</p><h2 id="cs-title" class="mt-5">Proven on the job.</h2></div>${arrowLink("All case studies", "case-studies.html")}</div>
+  <section class="section section--paper" aria-labelledby="cs-title"><div class="container">
+    <div class="section-head"><div><h2 id="cs-title">Example projects.</h2></div>${arrowLink("All case studies", "case-studies.html")}</div>
     <div class="grid grid--3" data-cases="3" data-sector="${s.slug === "home-diy" ? "" : s.slug}"></div></div></section>`;
 }
 
