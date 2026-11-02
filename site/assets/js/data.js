@@ -488,6 +488,10 @@ const CASE_STUDIES = [
 /* Add real offices here ({ name, city, address, phone, email }) — the contact page lists them automatically. */
 const OFFICES = [];
 
+/* Contact-page map: set this to your street address (or paste a Google Maps place name).
+   Leave it empty and the map section stays hidden. */
+const MAP_ADDRESS = "";
+
 /* Lookups */
 const byCat = (slug) => CATEGORIES.find((c) => c.slug === slug);
 const byProduct = (slug) => PRODUCTS.find((p) => p.slug === slug);

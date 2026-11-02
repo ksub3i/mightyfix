@@ -90,10 +90,20 @@
     </div>
   </section>
 
+  <section class="contact-map" id="contact-map" aria-labelledby="map-title" hidden>
+    <h2 id="map-title" class="visually-hidden">Find us</h2>
+    <iframe title="MightyFix location on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  </section>
+
 </main>
 <script src="assets/js/data.js"></script>
 <script>
   window.renderPage = function () {
+    if (MAP_ADDRESS) {
+      const map = document.getElementById("contact-map");
+      map.querySelector("iframe").src = "https://www.google.com/maps?q=" + encodeURIComponent(MAP_ADDRESS) + "&output=embed";
+      map.hidden = false;
+    }
     document.getElementById("office-cards").innerHTML = OFFICES.map((o) => `
       <div class="contact-card" data-reveal>
         <h2 class="h4" style="color:var(--navy)">${MF.esc(o.name)} — ${MF.esc(o.city)}</h2>
