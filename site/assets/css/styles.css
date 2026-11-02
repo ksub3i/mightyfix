@@ -1084,11 +1084,6 @@ a.download { text-decoration: none; }
 .map-pin { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--navy); border: 3px solid var(--white); box-shadow: 0 6px 16px rgba(0, 31, 85, 0.4); }
 .map-pin img { width: 30px; height: auto; }
 
-/* Turquoise feature bands (was light blue): Autumn Blue from the primary palette, white type */
-.section--ice { background: var(--autumn); color: var(--white); }
-.section--ice h2, .section--ice .h2 { color: var(--white); }
-.section--ice .eyebrow { color: var(--white); }
-.section--ice .muted, .section--ice .lead { color: var(--white); }
-.section--ice .link-arrow { color: var(--white); }
-.section--ice .btn--white:hover { --btn-bg: var(--ice); }
-.section--ice :focus-visible { outline-color: var(--white); }
+/* Feature bands (CTA, ranges, finder): white with navy type, a hairline to separate them from white sections above */
+.section--ice { background: var(--white); color: var(--navy); border-top: 1px solid rgba(0, 31, 85, 0.1); }
+.section--ice .btn--white { box-shadow: inset 0 0 0 1px var(--navy); }
