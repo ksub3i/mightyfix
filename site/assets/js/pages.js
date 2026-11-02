@@ -552,7 +552,7 @@ function renderCaseStudy(el) {
       <ul><li>Placeholder step or detail one</li><li>Placeholder step or detail two</li><li>Placeholder step or detail three</li></ul></div>
   </div></section>
   <section class="section"><div class="container">
-    <div class="gallery">${["concreteBuild", "caulkWindow", "tools"].map((ph) => `<figure data-reveal><img src="${IMG(PHOTOS[ph], 1400)}" alt="Project photo (placeholder)" loading="lazy"></figure>`).join("")}</div>
+    <div class="gallery">${["glassRoof", "caulkWindow", "tools"].map((ph) => `<figure data-reveal><img src="${IMG(PHOTOS[ph], 1400)}" alt="Project photo (placeholder)" loading="lazy"></figure>`).join("")}</div>
   </div></section>
   <section class="section section--navy on-dark"><div class="container">
     <p class="eyebrow">The result</p>
